@@ -1,18 +1,27 @@
+using Newtonsoft.Json;
+
 namespace TeslaRenting.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 
 public class TeslaRentingDbContext : DbContext
 {
-    private static IConfiguration _configuration;
-    private string connectionString = _configuration.GetConnectionString("TeslaRentingDatabase");
     public DbSet<Reservation> Reservations { get; set; }
     public DbSet<TeslaCar> TeslaModels { get; set; }
+    private readonly List<TeslaCar> _teslaCarSeedData;
 
-    public TeslaRentingDbContext(DbContextOptions<TeslaRentingDbContext> options, IConfiguration configuration) : base(options)
+    public TeslaRentingDbContext(DbContextOptions<TeslaRentingDbContext> options) : base(options)
     {
-        _configuration = configuration;
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "teslaCarSeed.json");
+        if (File.Exists(filePath))
+        {
+            var teslaCarSeedJson = File.ReadAllText(filePath);
+            _teslaCarSeedData = JsonConvert.DeserializeObject<List<TeslaCar>>(teslaCarSeedJson);
+        }
+        else
+        {
+            _teslaCarSeedData = new List<TeslaCar>();
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -21,10 +30,10 @@ public class TeslaRentingDbContext : DbContext
             .HasKey(r => r.Id);
         modelBuilder.Entity<TeslaCar>()
             .HasKey(m => m.Id);
-    }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer(connectionString);
+        modelBuilder.Entity<TeslaCar>()
+            .Property(t => t.Name)
+            .IsRequired();
+        modelBuilder.Entity<TeslaCar>()
+            .HasData(_teslaCarSeedData);
     }
 }

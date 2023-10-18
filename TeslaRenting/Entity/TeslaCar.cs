@@ -1,6 +1,6 @@
-using TeslaRenting.Enums;
+using TeslaRenting.Enum;
 
-namespace TeslaRenting.Entities;
+namespace TeslaRenting.Entity;
 
 public class TeslaCar
 {
@@ -8,6 +8,6 @@ public class TeslaCar
     public string Name { get; set; }
     public string Description { get; set; }
     public decimal DailyRate { get; set; }
-    public string ImageUrl { get; set; }
-    BaseLocations AvailableAt { get; set; }
+    public string? ImageUrl { get; set; }
+    Availability AvailableAt { get; set; }
 }

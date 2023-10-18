@@ -1,9 +1,10 @@
 namespace TeslaRenting.Enum;
 
-public enum BaseLocation
+public enum Availability
 {
-    PalmaAirport = 1,
+    PalmaAirport,
     PalmaCityCenter,
     Alcudia, 
-    Manacor
+    Manacor,
+    NotAvailable
 }
