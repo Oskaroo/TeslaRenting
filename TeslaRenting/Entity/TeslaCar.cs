@@ -9,5 +9,8 @@ public class TeslaCar
     public string Description { get; set; }
     public decimal DailyRate { get; set; }
     public string? ImageUrl { get; set; }
-    Availability AvailableAt { get; set; }
+    
+    public Availability AvailableAt { get; set; }
+    
+    public virtual ICollection<Reservation> Reservations { get; set; }
 }

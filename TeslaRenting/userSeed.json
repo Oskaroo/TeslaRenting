@@ -1,0 +1,34 @@
+[
+  {
+    "Id": 1,
+    "FirstName": "Oskar",
+    "LastName": "Michalski",
+    "DateOfBirth": "1999-06-21",
+    "Email": "oskar@test.com",
+    "Phone": "123123123",
+    "AddressId": 1,
+    "Address": {
+      "Country": "Poland",
+      "City": "Krakow",
+      "Street": "Pawia",
+      "ZipCode": "31-154"
+    },
+    "Role": "Admin"
+  },
+  {
+    "Id": 2,
+    "FirstName": "Barbara",
+    "LastName": "Kowalska",
+    "DateOfBirth": "2002-12-10",
+    "Email": "barbara@test.com",
+    "Phone": "123123123",
+    "AddressId": 1,
+    "Address": {
+      "Country": "Poland",
+      "City": "Krakow",
+      "Street": "Pawia",
+      "ZipCode": "31-154"
+    },
+    "Role": "Admin"
+  },
+]

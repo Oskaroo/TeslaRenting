@@ -7,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 public class TeslaRentingDbContext : DbContext
 {
     public DbSet<Reservation> Reservations { get; set; }
-    public DbSet<TeslaCar> TeslaModels { get; set; }
+    public DbSet<TeslaCar> TeslaCars { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Address> Addresses { get; set; }
+    
     private readonly List<TeslaCar> _teslaCarSeedData;
 
     public TeslaRentingDbContext(DbContextOptions<TeslaRentingDbContext> options) : base(options)
@@ -35,5 +38,8 @@ public class TeslaRentingDbContext : DbContext
             .IsRequired();
         modelBuilder.Entity<TeslaCar>()
             .HasData(_teslaCarSeedData);
+        modelBuilder.Entity<TeslaCar>()
+            .Property(t => t.AvailableAt)
+            .HasConversion<string>();
     }
 }
