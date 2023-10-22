@@ -1,9 +1,11 @@
+using System.ComponentModel.DataAnnotations;
 using TeslaRenting.Enum;
 
 namespace TeslaRenting.Entity;
 
 public class Reservation
 { 
+        [Key]
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; } 

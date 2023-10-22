@@ -8,7 +8,7 @@ public class RegisterUserDto
     
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    DateTime DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
     public string ConfirmPassword { get; set; }
@@ -18,6 +18,4 @@ public class RegisterUserDto
     public string City { get; set; }
     public string Street { get; set; }
     public string PostalCode { get; set; }
-    
-    public Role Role { get; set; } = Role.User;
 }

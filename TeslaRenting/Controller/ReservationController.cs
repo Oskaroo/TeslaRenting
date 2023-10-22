@@ -14,6 +14,12 @@ public class ReservationController : ControllerBase
     {
         _reservationService = reservationService;
     }
+    [HttpGet]
+    public ActionResult<IEnumerable<ReservationDto>> GetAll()
+    {
+        var reservationsDtos = _reservationService.GetAll();
+        return Ok(reservationsDtos);
+    }
     
     [HttpGet("{id}")]
     public ActionResult<ReservationDto> Get([FromRoute] int id)

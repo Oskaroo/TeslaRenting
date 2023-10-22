@@ -1,0 +1,10 @@
+[
+  {
+    "Id": 1,
+    "Country": "Poland",
+    "City": "Krakow",
+    "Street": "Pawia",
+    "PostalCode": "31-154",
+    "Users":[]
+  }
+]

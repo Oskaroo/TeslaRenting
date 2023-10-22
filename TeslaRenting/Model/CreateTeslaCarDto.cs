@@ -1,18 +1,13 @@
-using System.ComponentModel.DataAnnotations;
 using TeslaRenting.Enum;
 
-namespace TeslaRenting.Entity;
+namespace TeslaRenting.Model;
 
-public class TeslaCar
+public class CreateTeslaCarDto
 {
-    [Key]
-    public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public decimal DailyRate { get; set; }
     public string? ImageUrl { get; set; }
     
     public Availability AvailableAt { get; set; }
-    
-    public virtual ICollection<Reservation> Reservations { get; set; }
 }

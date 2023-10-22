@@ -12,6 +12,7 @@ public interface IReservationService
     int Create(CreateReservationDto dto);
     void Delete(int id);
     void Update(int id, UpdateReservationDto dto, TeslaCar teslaCar);
+    IEnumerable<ReservationDto> GetAll();
 }
 
 public class ReservationService : IReservationService
@@ -78,30 +79,20 @@ public class ReservationService : IReservationService
         _dbContext.SaveChanges();
     }
 
+    public IEnumerable<ReservationDto> GetAll()
+    {
+        var reservations = _dbContext.Reservations
+            .Include(r => r.TeslaCar)
+            .Include(r => r.User)
+            .ToList();
+        var reservationsDtos = _mapper.Map<List<ReservationDto>>(reservations);
+        return reservationsDtos;
+    }
+
     public decimal CalculatePrice(decimal dailyRate, DateTime startDate, DateTime endDate)
     {
         var days = (endDate - startDate).Days;
         var result = dailyRate * days;
         return result;
     }
-
-
-    /*public void Update(int id, UpdateRestaurantDto dto)
-    {
-        var restaurant = _dbContext
-            .Restaurants
-            .FirstOrDefault(r => r.Id == id);
-        if (restaurant is null)
-            throw new NotFoundException("Restaurant not found");
-        restaurant.Name = dto.Name;
-        restaurant.Description = dto.Description;
-        restaurant.HasDelivery = dto.HasDelivery;
-        restaurant.DeliveryPrice = dto.DeliveryPrice;
-        restaurant.Address.City = dto.City;
-        restaurant.Address.Street = dto.Street;
-        restaurant.Address.PostalCode = dto.PostalCode;
-        _dbContext.SaveChanges();
-    }*/
-    
-    
 }

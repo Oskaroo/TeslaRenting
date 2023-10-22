@@ -12,6 +12,8 @@ builder.Services.AddDbContext<TeslaRentingDbContext>(options => options.UseSqlSe
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITeslaCarService, TeslaCarService>();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddEndpointsApiExplorer();
@@ -20,12 +22,31 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 
 
-
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+/*
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    
+    try
+    {
+        var context = services.GetRequiredService<TeslaRentingDbContext>();
+        context.Database.EnsureCreated(); 
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+}
+*/
+
+
+
+
+
+
+// Configure the HTTP request pipeline.]
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();

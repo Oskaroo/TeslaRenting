@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TeslaRenting.Entity;
 
 public class Address
 {
+    [Key]
     public int Id { get; set; }
     public string Country { get; set; }
     public string City { get; set; }
@@ -9,6 +12,6 @@ public class Address
     public string PostalCode { get; set; }
     
     
-    public IEnumerable<User> Users { get; set; }
+    public List<User> Users { get; set; }
     
 }
