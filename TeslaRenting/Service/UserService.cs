@@ -1,11 +1,17 @@
 using System.Collections;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Transactions;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using TeslaRenting.Entity;
 using TeslaRenting.Exception;
 using TeslaRenting.MiddleWare;
 using TeslaRenting.Model;
+using TeslaRenting.Model.Authenticator;
 
 namespace TeslaRenting.Service;
 public interface IUserService
@@ -13,17 +19,20 @@ public interface IUserService
     UserDto GetUserById(int id);
     IEnumerable<UserDto> GetAll();
     void RegisterUser(RegisterUserDto dto);
+    string GenerateJwt(LoginDto dto);
 }
 
 public class UserService : IUserService
 {
     private readonly TeslaRentingDbContext _dbContext;
     private readonly IMapper _mapper;
+    private readonly AuthenticationSettings _authenticationSettings;
 
-    public UserService(TeslaRentingDbContext dbContext,IMapper mapper)
+    public UserService(TeslaRentingDbContext dbContext,IMapper mapper, AuthenticationSettings authenticationSettings)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _authenticationSettings = authenticationSettings;
     }
     public UserDto GetUserById(int id)
     {
@@ -81,5 +90,36 @@ public class UserService : IUserService
             transaction.Rollback();
             throw new BadRequestException("Error while creating user");
         }
+    }
+
+    public string GenerateJwt(LoginDto dto)
+    {
+        var user = _dbContext.Users
+            .FirstOrDefault(u => u.Email == dto.Email);
+        if (user is null) throw new BadRequestException("Invalid username or password");
+        var result = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+        if (result == false)
+        {
+            throw new BadRequestException("Invalid email or password");
+        }
+        var claims = new List<Claim>()
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new Claim("DateOfBirth", user.DateOfBirth.Value.ToString("yyyy-MM-dd")),
+        };
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
+        var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var expires = DateTime.Now.AddDays(_authenticationSettings.JwtExpireDays);
+        
+        var token = new JwtSecurityToken(
+            _authenticationSettings.JwtIssuer,
+            _authenticationSettings.JwtIssuer,
+            claims,
+            expires: expires,
+            signingCredentials: cred
+        );
+        var tokenHandler = new JwtSecurityTokenHandler();
+        return tokenHandler.WriteToken(token);
     }
 }

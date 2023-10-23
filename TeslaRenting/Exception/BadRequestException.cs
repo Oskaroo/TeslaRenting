@@ -1,4 +1,4 @@
-namespace TeslaRenting.MiddleWare;
+namespace TeslaRenting.Exception;
 
 public class BadRequestException : System.Exception
 {

@@ -19,11 +19,13 @@ public class ReservationService : IReservationService
 {
     private readonly TeslaRentingDbContext _dbContext;
     private readonly IMapper _mapper;
+    private readonly ILogger<ReservationService> _logger;
 
-    public ReservationService(TeslaRentingDbContext dbContext,IMapper mapper)
+    public ReservationService(TeslaRentingDbContext dbContext,IMapper mapper, ILogger<ReservationService> logger)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public ReservationDto GetReservationById(int id)
@@ -56,6 +58,7 @@ public class ReservationService : IReservationService
 
     public void Delete(int id)
     {
+        _logger.LogError($"Restaurant with id: {id} DELETE action invoked");
         var reservation = _dbContext
             .Reservations
             .FirstOrDefault(r => r.Id == id);
