@@ -1,26 +1,16 @@
-using System.Collections;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Transactions;
 using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using TeslaRenting.Entity;
+using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Model;
+using TeslaRenting.Data.Model.Authenticator;
 using TeslaRenting.Exception;
-using TeslaRenting.MiddleWare;
-using TeslaRenting.Model;
-using TeslaRenting.Model.Authenticator;
+using TeslaRenting.Service.Interface;
 
 namespace TeslaRenting.Service;
-public interface IUserService
-{
-    UserDto GetUserById(int id);
-    IEnumerable<UserDto> GetAll();
-    void RegisterUser(RegisterUserDto dto);
-    string GenerateJwt(LoginDto dto);
-}
 
 public class UserService : IUserService
 {
@@ -121,5 +111,14 @@ public class UserService : IUserService
         );
         var tokenHandler = new JwtSecurityTokenHandler();
         return tokenHandler.WriteToken(token);
+    }
+
+    public void Delete(int id)
+    {
+        var user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+        if (user is null)
+            throw new NotFoundException("User not found");
+        _dbContext.Users.Remove(user);
+        _dbContext.SaveChanges();
     }
 }

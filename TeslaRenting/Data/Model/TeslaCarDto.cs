@@ -1,11 +1,9 @@
-using System.ComponentModel.DataAnnotations;
-using TeslaRenting.Enum;
+using TeslaRenting.Data.Enum;
 
-namespace TeslaRenting.Entity;
+namespace TeslaRenting.Data.Model;
 
-public class TeslaCar
+public class TeslaCarDto
 {
-    [Key]
     public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
@@ -13,6 +11,4 @@ public class TeslaCar
     public string? ImageUrl { get; set; }
     
     public Availability AvailableAt { get; set; }
-    
-    public virtual ICollection<Reservation> Reservations { get; set; }
 }

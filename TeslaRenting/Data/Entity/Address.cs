@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TeslaRenting.Entity;
+namespace TeslaRenting.Data.Entity;
 
 public class Address
 {

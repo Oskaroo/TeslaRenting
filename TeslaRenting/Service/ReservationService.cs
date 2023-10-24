@@ -1,19 +1,12 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using TeslaRenting.Entity;
+using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Model;
 using TeslaRenting.Exception;
-using TeslaRenting.Model;
+using TeslaRenting.Service.Interface;
 
 namespace TeslaRenting.Service;
 
-public interface IReservationService
-{
-    ReservationDto GetReservationById(int id);
-    int Create(CreateReservationDto dto);
-    void Delete(int id);
-    void Update(int id, UpdateReservationDto dto, TeslaCar teslaCar);
-    IEnumerable<ReservationDto> GetAll();
-}
 
 public class ReservationService : IReservationService
 {
@@ -67,7 +60,7 @@ public class ReservationService : IReservationService
         _dbContext.Reservations.Remove(reservation);
         _dbContext.SaveChanges();
     }
-
+    
     public void Update(int id, UpdateReservationDto dto, TeslaCar teslaCar)
     {
         var reservation = _dbContext

@@ -1,6 +1,6 @@
-using TeslaRenting.Entity;
+using TeslaRenting.Data.Entity;
 
-namespace TeslaRenting.Model;
+namespace TeslaRenting.Data.Model;
 
 public class ReservationDto
 {

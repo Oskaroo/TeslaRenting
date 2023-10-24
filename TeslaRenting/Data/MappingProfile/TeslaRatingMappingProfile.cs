@@ -1,8 +1,8 @@
 using AutoMapper;
-using TeslaRenting.Entity;
-using TeslaRenting.Model;
+using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Model;
 
-namespace TeslaRenting.MappingProfile;
+namespace TeslaRenting.Data.MappingProfile;
 
 public class TeslaRatingMappingProfile : Profile
 {
@@ -22,8 +22,9 @@ public class TeslaRatingMappingProfile : Profile
         CreateMap<UpdateTeslaCarDto, TeslaCar>();
         
         
-        
-        CreateMap<UserDto, User>();
+        CreateMap<User, UserDto>();
+        //CreateMap<UserDto, User>();
+        CreateMap<LoginDto, User>();
 
 
     }

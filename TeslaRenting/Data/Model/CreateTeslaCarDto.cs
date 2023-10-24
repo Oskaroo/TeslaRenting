@@ -1,8 +1,8 @@
-using TeslaRenting.Enum;
+using TeslaRenting.Data.Enum;
 
-namespace TeslaRenting.Model;
+namespace TeslaRenting.Data.Model;
 
-public class UpdateTeslaCarDto
+public class CreateTeslaCarDto
 {
     public string Name { get; set; }
     public string Description { get; set; }

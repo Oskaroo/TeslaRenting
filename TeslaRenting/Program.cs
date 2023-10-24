@@ -1,16 +1,18 @@
 using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
-using TeslaRenting.Entity;
-using TeslaRenting.MappingProfile;
+using TeslaRenting.Controller.Authorization;
+using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Model;
+using TeslaRenting.Data.Model.Authenticator;
+using TeslaRenting.Data.Model.Validator;
 using TeslaRenting.MiddleWare;
-using TeslaRenting.Model;
-using TeslaRenting.Model.Authenticator;
-using TeslaRenting.Model.Validator;
 using TeslaRenting.Service;
+using TeslaRenting.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseNLog();
@@ -41,9 +43,12 @@ builder.Services.AddAuthentication(option =>
 
 #endregion
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Atleast18", b => b.AddRequirements(new MinimumAgeRequirement(18)));
+});
 
-
-
+builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 builder.Services.AddDbContext<TeslaRentingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TeslaRentingDatabase")));
 
 builder.Services.AddSwaggerGen();
@@ -92,12 +97,13 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.]
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<RequestTimeMiddleware>();
 app.UseHttpsRedirection();
-app.UseAuthorization();
+app.UseAuthentication();
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tesla Renting API"));
 app.UseRouting();
-
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

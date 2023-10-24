@@ -1,6 +1,5 @@
-using TeslaRenting.Enum;
 
-namespace TeslaRenting.Model;
+namespace TeslaRenting.Data.Model;
 
 public class RegisterUserDto
 {

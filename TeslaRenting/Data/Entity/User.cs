@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using TeslaRenting.Enum;
+using TeslaRenting.Data.Enum;
 
-namespace TeslaRenting.Entity;
+namespace TeslaRenting.Data.Entity;
 
 public class User
 {

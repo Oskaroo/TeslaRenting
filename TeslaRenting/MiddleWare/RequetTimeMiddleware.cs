@@ -1,11 +1,12 @@
 using System.Diagnostics;
 
-namespace TeslaRenting.MappingProfile;
+namespace TeslaRenting.MiddleWare;
 
 public class RequestTimeMiddleware: IMiddleware
 {
     private readonly ILogger<RequestTimeMiddleware> _logger;
     private readonly Stopwatch _stopwatch;
+
 
     public RequestTimeMiddleware(ILogger<RequestTimeMiddleware> logger)
     {

@@ -1,7 +1,7 @@
 using FluentValidation;
-using TeslaRenting.Entity;
+using TeslaRenting.Data.Entity;
 
-namespace TeslaRenting.Model.Validator;
+namespace TeslaRenting.Data.Model.Validator;
 
 public class RegisterUserDtoValidator : AbstractValidator<RegisterUserDto>
 {

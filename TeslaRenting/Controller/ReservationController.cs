@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TeslaRenting.Entity;
-using TeslaRenting.Model;
-using TeslaRenting.Service;
+using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Model;
+using TeslaRenting.Service.Interface;
 
 namespace TeslaRenting.Controller;
 [ApiController]
 [Route("api/reservation")]
+[Authorize]
 public class ReservationController : ControllerBase
 {
     private readonly IReservationService _reservationService;
@@ -15,6 +17,7 @@ public class ReservationController : ControllerBase
         _reservationService = reservationService;
     }
     [HttpGet]
+    [Authorize (Roles = "Admin,Employee")]
     public ActionResult<IEnumerable<ReservationDto>> GetAll()
     {
         var reservationsDtos = _reservationService.GetAll();
@@ -22,6 +25,7 @@ public class ReservationController : ControllerBase
     }
     
     [HttpGet("{id}")]
+    [Authorize (Roles = "Admin,Employee")]
     public ActionResult<ReservationDto> Get([FromRoute] int id)
     {
         var reservation = _reservationService.GetReservationById(id);

@@ -1,4 +1,4 @@
-namespace TeslaRenting.Model;
+namespace TeslaRenting.Data.Model;
 
 public class LoginDto
 {

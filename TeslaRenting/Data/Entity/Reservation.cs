@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using TeslaRenting.Enum;
 
-namespace TeslaRenting.Entity;
+namespace TeslaRenting.Data.Entity;
 
 public class Reservation
 { 

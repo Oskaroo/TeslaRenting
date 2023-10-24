@@ -1,4 +1,4 @@
-namespace TeslaRenting.Model.Authenticator;
+namespace TeslaRenting.Data.Model.Authenticator;
 
 public class AuthenticationSettings
 {

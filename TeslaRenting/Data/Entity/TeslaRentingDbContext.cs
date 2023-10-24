@@ -1,8 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace TeslaRenting.Entity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+namespace TeslaRenting.Data.Entity;
 
 public class TeslaRentingDbContext : DbContext
 {
@@ -68,6 +67,9 @@ public class TeslaRentingDbContext : DbContext
             .HasData(_teslaCarSeedData);
         modelBuilder.Entity<TeslaCar>()
             .Property(t => t.AvailableAt)
+            .HasConversion<string>();
+        modelBuilder.Entity<User>()
+            .Property(u => u.Role)
             .HasConversion<string>();
         modelBuilder.Entity<User>()
             .HasOne(u => u.UserAddress)

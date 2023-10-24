@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TeslaRenting.Model;
-using TeslaRenting.Service;
+using TeslaRenting.Data.Model;
+using TeslaRenting.Service.Interface;
 
 namespace TeslaRenting.Controller;
+
 [Route("api/user")]
 [ApiController]
 public class UserController : ControllerBase
@@ -13,31 +15,48 @@ public class UserController : ControllerBase
     {
         _userService = userService;
     }
+
     [HttpGet]
-    public ActionResult<IEnumerable<ReservationDto>> GetAll()
+    [Authorize]
+    public ActionResult<IEnumerable<UserDto>> GetAll()
     {
-        var reservationsDtos = _userService.GetAll();
-        return Ok(reservationsDtos);
+        var userDtos = _userService.GetAll();
+        return Ok(userDtos);
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin,Employee")]
     public ActionResult<UserDto> Get([FromRoute] int id)
     {
-        var reservation = _userService.GetUserById(id);
+        var user = _userService.GetUserById(id);
 
-        return Ok(reservation);
+        return Ok(user);
     }
+
     [HttpPost("register")]
+    [AllowAnonymous]
     public ActionResult RegisterUser([FromBody] RegisterUserDto dto)
     {
         _userService.RegisterUser(dto);
         return Ok();
     }
-    
+
     [HttpPost("login")]
+    [AllowAnonymous]
     public ActionResult Login([FromBody] LoginDto dto)
     {
         string token = _userService.GenerateJwt(dto);
         return Ok(token);
     }
+    
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
+    public ActionResult Delete([FromRoute] int id)
+    {
+        _userService.Delete(id);
+
+        return NoContent();
+    }
+    
+
 }

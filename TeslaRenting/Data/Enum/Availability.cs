@@ -1,4 +1,4 @@
-namespace TeslaRenting.Enum;
+namespace TeslaRenting.Data.Enum;
 
 public enum Availability
 {

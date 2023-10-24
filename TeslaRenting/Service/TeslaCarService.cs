@@ -1,18 +1,10 @@
 using AutoMapper;
-using TeslaRenting.Entity;
+using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Model;
 using TeslaRenting.Exception;
-using TeslaRenting.Model;
+using TeslaRenting.Service.Interface;
 
 namespace TeslaRenting.Service;
-
-public interface ITeslaCarService
-{
-    IEnumerable<TeslaCarDto> GetAll(); 
-    TeslaCarDto GetTeslaCarById(int id);
-    int Create(CreateTeslaCarDto dto);
-    void Update(int id, UpdateTeslaCarDto dto);
-    void Delete(int id);
-}
 
 public class TeslaCarService : ITeslaCarService
 {
