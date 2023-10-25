@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace TeslaRenting.MiddleWare;
+namespace TeslaRenting.Middleware;
 
 public class RequestTimeMiddleware: IMiddleware
 {

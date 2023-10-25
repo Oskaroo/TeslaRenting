@@ -12,7 +12,7 @@ using TeslaRenting.Data.Enum;
 using TeslaRenting.Data.Model;
 using TeslaRenting.Data.Model.Authenticator;
 using TeslaRenting.Data.Model.Validator;
-using TeslaRenting.MiddleWare;
+using TeslaRenting.Middleware;
 using TeslaRenting.Service;
 using TeslaRenting.Service.Interface;
 

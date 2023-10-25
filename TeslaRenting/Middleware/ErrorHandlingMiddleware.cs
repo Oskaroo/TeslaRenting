@@ -1,6 +1,6 @@
 using TeslaRenting.Exception;
 
-namespace TeslaRenting.MiddleWare;
+namespace TeslaRenting.Middleware;
 
 public class ErrorHandlingMiddleware : IMiddleware
 {
