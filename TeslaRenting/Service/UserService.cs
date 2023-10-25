@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using TeslaRenting.Data.Entity;
 using TeslaRenting.Data.Model;
 using TeslaRenting.Data.Model.Authenticator;
+using TeslaRenting.Data.Model.Validator;
 using TeslaRenting.Exception;
 using TeslaRenting.Service.Interface;
 
@@ -36,6 +37,7 @@ public class UserService : IUserService
         
         var result = _mapper.Map<UserDto>(users);
         return result;
+        
     }
 
     public IEnumerable<UserDto> GetAll()
@@ -119,6 +121,15 @@ public class UserService : IUserService
         if (user is null)
             throw new NotFoundException("User not found");
         _dbContext.Users.Remove(user);
+        _dbContext.SaveChanges();
+    }
+
+    public void Assign(AssignRoleDto dto, int id)
+    {
+        var user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+        if (user is null)
+            throw new NotFoundException("User not found");
+        user.Role = dto.Role;
         _dbContext.SaveChanges();
     }
 }

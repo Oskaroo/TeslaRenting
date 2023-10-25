@@ -23,7 +23,6 @@ public class TeslaRatingMappingProfile : Profile
         
         
         CreateMap<User, UserDto>();
-        //CreateMap<UserDto, User>();
         CreateMap<LoginDto, User>();
 
 

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TeslaRenting.Data.Enum;
 using TeslaRenting.Data.Model;
+using TeslaRenting.Data.Model.Validator;
 using TeslaRenting.Service.Interface;
 
 namespace TeslaRenting.Controller;
@@ -17,7 +19,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<UserDto>> GetAll()
     {
         var userDtos = _userService.GetAll();
@@ -56,6 +58,13 @@ public class UserController : ControllerBase
         _userService.Delete(id);
 
         return NoContent();
+    }
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
+    public ActionResult AssignRole([FromBody] AssignRoleDto dto, [FromRoute] int id)
+    {
+        _userService.Assign(dto, id);
+        return Ok();
     }
     
 

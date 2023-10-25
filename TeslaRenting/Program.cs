@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
 using TeslaRenting.Controller.Authorization;
+using TeslaRenting.Controller.Authorization.Handler;
 using TeslaRenting.Data.Entity;
+using TeslaRenting.Data.Enum;
 using TeslaRenting.Data.Model;
 using TeslaRenting.Data.Model.Authenticator;
 using TeslaRenting.Data.Model.Validator;
@@ -42,13 +44,14 @@ builder.Services.AddAuthentication(option =>
 });
 
 #endregion
+builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Atleast18", b => b.AddRequirements(new MinimumAgeRequirement(18)));
 });
 
-builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
+
 builder.Services.AddDbContext<TeslaRentingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TeslaRentingDatabase")));
 
 builder.Services.AddSwaggerGen();

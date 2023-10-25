@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
-namespace TeslaRenting.Controller.Authorization;
+namespace TeslaRenting.Controller.Authorization.Handler;
 
 public class MinimumAgeRequirementHandler : AuthorizationHandler<MinimumAgeRequirement>
 {
