@@ -17,8 +17,9 @@ public class User
     
     public int UserAddressId { get; set; }
     public virtual Address UserAddress { get; set; }
-    
-    public Role Role { get; set; } = Role.User;
+
+    public int UserRoleId { get; set; } = 1;
+    public virtual Role UserRole { get; set; }
     
     public IEnumerable<Reservation> Reservations { get; set; }
 }

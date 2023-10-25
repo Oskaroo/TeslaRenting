@@ -61,16 +61,19 @@ public class ReservationService : IReservationService
         _dbContext.SaveChanges();
     }
     
-    public void Update(int id, UpdateReservationDto dto, TeslaCar teslaCar)
+    public void Update(int id, UpdateReservationDto dto)
     {
         var reservation = _dbContext
             .Reservations
             .FirstOrDefault(r => r.Id == id);
+        var teslaCar = _dbContext.TeslaCars.FirstOrDefault(t => t.Id == dto.TeslaCarId);
         if (reservation is null)
             throw new NotFoundException("Reservation not found");
         reservation.TeslaCarId = dto.TeslaCarId;
         reservation.StartDate = dto.StartDate;
         reservation.EndDate = dto.EndDate;
+        if (teslaCar is null)
+            throw new NotFoundException("Tesla model not found");
         reservation.TotalCost = CalculatePrice(teslaCar.DailyRate, dto.StartDate, dto.EndDate);
         _dbContext.SaveChanges();
     }
@@ -84,7 +87,9 @@ public class ReservationService : IReservationService
         var reservationsDtos = _mapper.Map<List<ReservationDto>>(reservations);
         return reservationsDtos;
     }
-
+    
+    
+// Calculate the difference between two dates and multiply it by the daily rate of the car
     public decimal CalculatePrice(decimal dailyRate, DateTime startDate, DateTime endDate)
     {
         var days = (endDate - startDate).Days;

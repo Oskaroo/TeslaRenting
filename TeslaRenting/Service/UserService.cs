@@ -52,7 +52,6 @@ public class UserService : IUserService
 
     public void RegisterUser(RegisterUserDto dto)
     {
-        using var transaction = _dbContext.Database.BeginTransaction();
         try
         {
             var address = new Address()
@@ -62,6 +61,7 @@ public class UserService : IUserService
                 Street = dto.Street,
                 PostalCode = dto.PostalCode
             };
+            _dbContext.Addresses.Add(address);
             var newUser = new User()
             {
                 FirstName = dto.FirstName,
@@ -69,17 +69,14 @@ public class UserService : IUserService
                 DateOfBirth = dto.DateOfBirth,
                 Email = dto.Email,
                 Phone = dto.Phone,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 UserAddress = address
             };
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
-            newUser.PasswordHash = hashedPassword;
             _dbContext.Users.Add(newUser);
             _dbContext.SaveChanges();
-            transaction.Commit();
         }
         catch (System.Exception e)
         {
-            transaction.Rollback();
             throw new BadRequestException("Error while creating user");
         }
     }
@@ -87,6 +84,7 @@ public class UserService : IUserService
     public string GenerateJwt(LoginDto dto)
     {
         var user = _dbContext.Users
+            .Include(u => u.UserRole)
             .FirstOrDefault(u => u.Email == dto.Email);
         if (user is null) throw new BadRequestException("Invalid username or password");
         var result = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
@@ -98,6 +96,7 @@ public class UserService : IUserService
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new Claim(ClaimTypes.Role, $"{user.UserRole.Name}"),
             new Claim("DateOfBirth", user.DateOfBirth.Value.ToString("yyyy-MM-dd")),
         };
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
@@ -129,7 +128,7 @@ public class UserService : IUserService
         var user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
         if (user is null)
             throw new NotFoundException("User not found");
-        user.Role = dto.Role;
+        user.UserRoleId = dto.UserRoleId;
         _dbContext.SaveChanges();
     }
 }

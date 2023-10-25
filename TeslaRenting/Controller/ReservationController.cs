@@ -47,9 +47,9 @@ public class ReservationController : ControllerBase
         return NoContent();
     }
     [HttpPut("{id}")]
-    public ActionResult<ReservationDto> Update([FromBody] UpdateReservationDto dto, [FromRoute] int id, [FromServices] TeslaCar dailyRate)
+    public ActionResult<ReservationDto> Update([FromBody] UpdateReservationDto dto, [FromRoute] int id)
     {
-        _reservationService.Update(id, dto, dailyRate);
+        _reservationService.Update(id, dto);
         return Ok();
     }
 }

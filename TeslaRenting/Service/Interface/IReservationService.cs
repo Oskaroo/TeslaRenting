@@ -8,6 +8,6 @@ public interface IReservationService
         ReservationDto GetReservationById(int id);
         int Create(CreateReservationDto dto);
         void Delete(int id);
-        void Update(int id, UpdateReservationDto dto, TeslaCar teslaCar);
+        void Update(int id, UpdateReservationDto dto);
         IEnumerable<ReservationDto> GetAll();
 }

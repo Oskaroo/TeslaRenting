@@ -9,10 +9,12 @@ public class TeslaRentingDbContext : DbContext
     public DbSet<TeslaCar> TeslaCars { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<Role> Roles { get; set; }
     
     private readonly List<TeslaCar> _teslaCarSeedData;
     private readonly List<User> _userSeedData;
     private readonly List<Address> _addressSeedData;
+    private readonly List<Role> _roleSeedData;
 
     public TeslaRentingDbContext(DbContextOptions<TeslaRentingDbContext> options) : base(options)
     {
@@ -26,6 +28,17 @@ public class TeslaRentingDbContext : DbContext
         else
         {
             _teslaCarSeedData = new List<TeslaCar>();
+        }
+        //seed Role from Json
+        var rolefilePath = Path.Combine(Directory.GetCurrentDirectory(), "roleSeed.json");
+        if (File.Exists(rolefilePath))
+        {
+            var userSeedJson = File.ReadAllText(rolefilePath);
+            _roleSeedData = JsonConvert.DeserializeObject<List<Role>>(userSeedJson);
+        }
+        else
+        {
+            _roleSeedData = new List<Role>();
         }
         //seed Address from Json
         var addressSeedPath = Path.Combine(Directory.GetCurrentDirectory(), "addressSeed.json");
@@ -69,14 +82,17 @@ public class TeslaRentingDbContext : DbContext
             .Property(t => t.AvailableAt)
             .HasConversion<string>();
         modelBuilder.Entity<User>()
-            .Property(u => u.Role)
-            .HasConversion<string>();
-        modelBuilder.Entity<User>()
             .HasOne(u => u.UserAddress)
             .WithMany(a => a.Users)
             .HasForeignKey(u => u.UserAddressId);
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.UserRole)
+            .WithMany(a => a.Users)
+            .HasForeignKey(u => u.UserRoleId);
         modelBuilder.Entity<Address>()
             .HasData(_addressSeedData);
+        modelBuilder.Entity<Role>()
+            .HasData(_roleSeedData);
         modelBuilder.Entity<User>()
             .HasData(_userSeedData);
         
