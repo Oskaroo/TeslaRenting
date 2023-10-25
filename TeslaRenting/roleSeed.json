@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1,
+    "Name": "User",
+    "Users":[]
+  },
+  {
+    "Id": 2,
+    "Name": "Employee",
+    "Users":[]
+  },
+  {
+    "Id": 3,
+    "Name": "Admin",
+    "Users":[]
+  }
+]

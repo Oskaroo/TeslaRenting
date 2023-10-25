@@ -8,6 +8,6 @@
     "Phone": "123123123",
     "PasswordHash": "test123",
     "UserAddressId": 1,
-    "Role": "Admin"
+    "UserRoleId" : 3
   }
 ]

@@ -19,7 +19,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Employee")]
     public ActionResult<IEnumerable<UserDto>> GetAll()
     {
         var userDtos = _userService.GetAll();
