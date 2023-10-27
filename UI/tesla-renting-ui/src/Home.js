@@ -6,7 +6,7 @@ const Home = () => {
     isPending,
     error,
     data: cars,
-  } = useFetch(`http://localhost:8001/cars`);
+  } = useFetch(`http://localhost:5001/api/teslaCar`); // Updated URL
 
   return (
     <div className="home">

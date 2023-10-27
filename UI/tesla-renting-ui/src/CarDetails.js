@@ -1,19 +1,36 @@
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import useFetch from "./UseFetch";
+import Axios from "axios";
+
 const CarDetails = () => {
   const { id } = useParams();
-  const {
-    data: car,
-    error,
-    isPending,
-  } = useFetch("http://localhost:8001/cars/" + id);
+  const [car, setCar] = useState(null);
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+
   const history = useHistory();
-  const handleClick = () => {
-    fetch(`http://localhost:8001/cars/` + car.id, {
-      method: "DELETE",
-    }).then(() => {
-      history.push("/");
-    });
+
+  useEffect(() => {
+    // Axios GET request to fetch car details
+    Axios.get(`http://localhost:5001/api/teslaCar/${id}`)
+      .then((response) => {
+        setCar(response.data); // Assuming the response contains the car details
+        setIsPending(false);
+      })
+      .catch((error) => {
+        setError("Error fetching car details: " + error.message);
+        setIsPending(false);
+      });
+  }, [id]);
+
+  const handleDelete = () => {
+    Axios.delete(`http://localhost:5001/api/teslaCar/${id}`)
+      .then(() => {
+        history.push("/");
+      })
+      .catch((error) => {
+        console.error("Error deleting car:", error);
+      });
   };
 
   return (
@@ -22,10 +39,10 @@ const CarDetails = () => {
       {error && <div>{error}</div>}
       {car && (
         <article>
-          <h2>{car.title}</h2>
-          <p>Available at {car.place}</p>
-          <div>{car.body}</div>
-          <button onClick={handleClick}>delete</button>
+          <h2>{car.name}</h2>
+          <p>Available at {car.availableAt}</p>
+          <div>{car.description}</div>
+          <button onClick={handleDelete}>Delete</button>
         </article>
       )}
     </div>
