@@ -1,0 +1,16 @@
+{
+  "cars": [
+    {
+      "title": "Tesla x",
+      "body": "Why Tesla Car",
+      "place": "Brzesko",
+      "id": 1
+    },
+    {
+      "title": "Tesla y",
+      "body": "come come come",
+      "place": "Krakow",
+      "id": 2
+    }
+  ]
+}
