@@ -7,7 +7,6 @@ namespace TeslaRenting.Controller;
 
 [Route("api/teslaCar")]
 [ApiController]
-[Authorize]
 public class TeslaCarController : ControllerBase
 {
     private readonly ITeslaCarService _teslaCarService;

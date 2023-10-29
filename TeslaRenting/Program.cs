@@ -63,6 +63,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITeslaCarService, TeslaCarService>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeMiddleware>();
@@ -99,6 +108,7 @@ using (var scope = app.Services.CreateScope())
 
 // Configure the HTTP request pipeline.]
 
+app.UseCors();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<RequestTimeMiddleware>();
 app.UseHttpsRedirection();
