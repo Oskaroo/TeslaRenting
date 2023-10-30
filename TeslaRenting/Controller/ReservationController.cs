@@ -18,7 +18,7 @@ public class ReservationController : ControllerBase
     }
     [HttpGet]
     [Authorize (Roles = "Admin,Employee")]
-    public ActionResult<IEnumerable<ReservationDto>> GetAll()
+    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll()
     {
         var reservationsDtos = _reservationService.GetAll();
         return Ok(reservationsDtos);
@@ -26,30 +26,30 @@ public class ReservationController : ControllerBase
     
     [HttpGet("{id}")]
     [Authorize (Roles = "Admin,Employee")]
-    public ActionResult<ReservationDto> Get([FromRoute] int id)
+    public async Task<ActionResult<ReservationDto>> Get([FromRoute] int id)
     {
-        var reservation = _reservationService.GetReservationById(id);
+        var reservation = await _reservationService.GetReservationById(id);
         
         return Ok(reservation);
     }
     [HttpPost]
-    public ActionResult CreateReservation([FromBody] CreateReservationDto dto)
+    public async Task<ActionResult> CreateReservation([FromBody] CreateReservationDto dto)
     {
-        var id = _reservationService.Create(dto);
+        var id = await _reservationService.Create(dto);
         
         return Created($"/api/reservation/{id}", null);
     }
     [HttpDelete("{id}")]
-    public ActionResult Delete([FromRoute] int id)
+    public async Task<ActionResult> Delete([FromRoute] int id)
     {
-        _reservationService.Delete(id);
+       await _reservationService.Delete(id);
         
         return NoContent();
     }
     [HttpPut("{id}")]
-    public ActionResult<ReservationDto> Update([FromBody] UpdateReservationDto dto, [FromRoute] int id)
+    public async Task<ActionResult<ReservationDto>> Update([FromBody] UpdateReservationDto dto, [FromRoute] int id)
     {
-        _reservationService.Update(id, dto);
+        await _reservationService.Update(id, dto);
         return Ok();
     }
 }

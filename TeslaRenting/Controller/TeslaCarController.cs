@@ -7,7 +7,6 @@ namespace TeslaRenting.Controller;
 
 [Route("api/teslaCar")]
 [ApiController]
-[Authorize]
 public class TeslaCarController : ControllerBase
 {
     private readonly ITeslaCarService _teslaCarService;
@@ -18,42 +17,42 @@ public class TeslaCarController : ControllerBase
     }
     
     [HttpGet]
-    public ActionResult<IEnumerable<TeslaCarDto>> GetAll()
+    public async Task<ActionResult<IEnumerable<TeslaCarDto>>> GetAll()
     {
-        var teslaCarsDtos = _teslaCarService.GetAll();
+        var  teslaCarsDtos = await _teslaCarService.GetAll();
         return Ok(teslaCarsDtos);
     }
     
     [HttpGet("{id}")]
-    public ActionResult<TeslaCarDto> Get([FromRoute] int id)
+    public async Task<ActionResult<TeslaCarDto>> Get([FromRoute] int id)
     {
-        var teslaCar = _teslaCarService.GetTeslaCarById(id);
+        var teslaCar = await _teslaCarService.GetTeslaCarById(id);
         
         return Ok(teslaCar);
     }
     
     [HttpPost]
     [Authorize (Roles = "Admin,Employee")]
-    public ActionResult CreateTeslaCar([FromBody] CreateTeslaCarDto dto)
+    public async Task<ActionResult> CreateTeslaCar([FromBody] CreateTeslaCarDto dto)
     {
-        var id = _teslaCarService.Create(dto);
+        var id = await _teslaCarService.Create(dto);
         
         return Created($"/api/teslaCar/{id}", null);
     }
     
     [HttpPut("{id}")]
     [Authorize (Roles = "Admin,Employee")]
-    public ActionResult<TeslaCarDto> Update([FromBody] UpdateTeslaCarDto dto, [FromRoute] int id)
+    public async Task<ActionResult<TeslaCarDto>> Update([FromBody] UpdateTeslaCarDto dto, [FromRoute] int id)
     {
-        _teslaCarService.Update(id, dto);
+        await _teslaCarService.Update(id, dto);
         return Ok();
     }
     
     [HttpDelete("{id}")]
     [Authorize (Roles = "Admin,Employee")]
-    public ActionResult Delete([FromRoute] int id)
+    public async Task<ActionResult> Delete([FromRoute] int id)
     {
-        _teslaCarService.Delete(id);
+        await _teslaCarService.Delete(id);
         
         return NoContent();
     }

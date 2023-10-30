@@ -20,50 +20,50 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Authorize(Roles = "Admin,Employee")]
-    public ActionResult<IEnumerable<UserDto>> GetAll()
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
     {
-        var userDtos = _userService.GetAll();
+        var userDtos = await _userService.GetAll();
         return Ok(userDtos);
     }
 
     [HttpGet("{id}")]
     [Authorize(Roles = "Admin,Employee")]
-    public ActionResult<UserDto> Get([FromRoute] int id)
+    public async Task<ActionResult<UserDto>> Get([FromRoute] int id)
     {
-        var user = _userService.GetUserById(id);
+        var user =await _userService.GetUserById(id);
 
         return Ok(user);
     }
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public ActionResult RegisterUser([FromBody] RegisterUserDto dto)
+    public async Task<ActionResult> RegisterUser([FromBody] RegisterUserDto dto)
     {
-        _userService.RegisterUser(dto);
+        await _userService.RegisterUser(dto);
         return Ok();
     }
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public ActionResult Login([FromBody] LoginDto dto)
+    public async Task<ActionResult> Login([FromBody] LoginDto dto)
     {
-        string token = _userService.GenerateJwt(dto);
+        string token = await _userService.GenerateJwt(dto);
         return Ok(token);
     }
     
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
-    public ActionResult Delete([FromRoute] int id)
+    public async Task<ActionResult> Delete([FromRoute] int id)
     {
-        _userService.Delete(id);
+        await _userService.Delete(id);
 
         return NoContent();
     }
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public ActionResult AssignRole([FromBody] AssignRoleDto dto, [FromRoute] int id)
+    public async Task<ActionResult> AssignRole([FromBody] AssignRoleDto dto, [FromRoute] int id)
     {
-        _userService.Assign(dto, id);
+       await _userService.Assign(dto, id);
         return Ok();
     }
     

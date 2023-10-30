@@ -5,10 +5,10 @@ namespace TeslaRenting.Service.Interface;
 
 public interface IUserService
 {
-        UserDto GetUserById(int id);
-        IEnumerable<UserDto> GetAll();
-        void RegisterUser(RegisterUserDto dto);
-        string GenerateJwt(LoginDto dto);
-        void Delete(int id);
-        void Assign(AssignRoleDto dto, int id);
+        Task<UserDto> GetUserById(int id);
+        Task<IEnumerable<UserDto>> GetAll();
+        Task RegisterUser(RegisterUserDto dto);
+        Task<string> GenerateJwt(LoginDto dto);
+        Task Delete(int id);
+        Task Assign(AssignRoleDto dto, int id);
 }

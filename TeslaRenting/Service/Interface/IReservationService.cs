@@ -5,9 +5,9 @@ namespace TeslaRenting.Service.Interface;
 
 public interface IReservationService
 { 
-        ReservationDto GetReservationById(int id);
-        int Create(CreateReservationDto dto);
-        void Delete(int id);
-        void Update(int id, UpdateReservationDto dto);
-        IEnumerable<ReservationDto> GetAll();
+        Task<ReservationDto> GetReservationById(int id);
+        Task<int> Create(CreateReservationDto dto);
+        Task Delete(int id);
+        Task Update(int id, UpdateReservationDto dto);
+        Task<IEnumerable<ReservationDto>> GetAll();
 }
