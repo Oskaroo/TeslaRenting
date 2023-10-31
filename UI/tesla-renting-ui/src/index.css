@@ -33,22 +33,43 @@
   margin: auto;
   padding: 20px;
 }
-.car-preview  {
-  padding: 10px 16px;
-  margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
+.car-container {
+  display: flex;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
 }
+
+.car-preview {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+  padding: 50px;
+}
+
 .car-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.car-preview h2{
+
+.car-preview h2 {
   font-size: 20px;
-  color:#f1356d;
-  margin-bottom: 8px;
+  color: #f1356d;
+  margin: 8px 0;
 }
-.car-preview a{
+
+.car-preview a {
   text-decoration: none;
 }
+
 
 .car-details h2{
   font-size: 20px;
@@ -96,4 +117,83 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+.places-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.PalmaAirport {
+  background-image: url("https://airmundo.com/app/uploads/2021/06/Palma-de-Mallorca-Airport-PMI-400x300.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.PalmaCityCenter {
+  background-image: url("https://mldvwwasb8tu.i.optimole.com/w:1087/h:1500/q:90/ig:avif/f:best/https/veebrant.com/wp-content/uploads/2023/03/palma-plaza-mayor-entrance.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.Alcudia {
+  background-image: url("https://static.seetheworld.com/image_uploader/photos/49/original/puerto-alcudia-mallorca-port-d-alcudia.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.Manacor {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/18-10-29-Mallorca-Manacor-RalfR-DJI_0268.jpg/640px-18-10-29-Mallorca-Manacor-RalfR-DJI_0268.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.PalmaAirport::before,
+.PalmaCityCenter::before,
+.Alcudia::before,
+.Manacor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.PalmaAirport h2,
+.PalmaCityCenter h2,
+.Alcudia h2,
+.Manacor h2 {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.place-card {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.place-card:hover::before {
+  opacity: 1;
+}
+
+.place-card:hover h2 {
+  color: #fff;
 }

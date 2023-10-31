@@ -18,3 +18,11 @@ export const GetAllCars = () => {
     return response.json();
   });
 };
+export const AddReservation = (carData) => {
+  return apiAxiosInstance.post("/api/reservation", carData).then((response) => {
+    if (response.status !== 201) {
+      throw new Error(`Failed to add reservation - ${response.status}`);
+    }
+    return response.data;
+  });
+};

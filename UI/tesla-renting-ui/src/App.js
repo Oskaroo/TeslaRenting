@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from "./Create";
 import CarDetails from "./CarDetails";
 import NotFound from "./NotFound";
-import image from "./photos/teslaphoto.jpg";
+import Cars from "./Cars";
+import Places from "./Places";
 function App() {
   return (
     <Router>
@@ -18,8 +19,14 @@ function App() {
             <Route path="/create">
               <Create />
             </Route>
+            <Route path="/places">
+              <Places />
+            </Route>
             <Route path="/cars/:id">
               <CarDetails />
+            </Route>
+            <Route path="/cars">
+              <Cars />
             </Route>
             <Route path="*">
               <NotFound />

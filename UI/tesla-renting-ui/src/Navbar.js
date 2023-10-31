@@ -6,7 +6,7 @@ const Navbar = () => {
       <h1>TeslaRenting</h1>
       <div className="links">
         <Link to="/">Home</Link>
-        <Link to="/create">New Car</Link>
+        <Link to="/create">Add Reservation</Link>
         <Link to="/create">About</Link>
         <Link to="/cars">Cars</Link>
         <Link to="/places">Places</Link>
