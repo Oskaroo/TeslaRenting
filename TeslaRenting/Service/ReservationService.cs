@@ -43,8 +43,8 @@ public class ReservationService : IReservationService
             throw new NotFoundException("Tesla model not found");
         
         reservation.TotalCost = teslaModel.DailyRate * (dto.EndDate - dto.StartDate).Days;
-        _dbContext.Reservations.Add(reservation);
-        _dbContext.SaveChanges();
+        await _dbContext.Reservations.AddAsync(reservation);
+        await _dbContext.SaveChangesAsync();
         
         return reservation.Id;
     }
@@ -58,7 +58,7 @@ public class ReservationService : IReservationService
         if (reservation is null)
             throw new NotFoundException("Reservation not found");
         _dbContext.Reservations.Remove(reservation);
-        _dbContext.SaveChanges();
+       await _dbContext.SaveChangesAsync();
     }
     
     public async Task Update(int id, UpdateReservationDto dto)
@@ -75,7 +75,7 @@ public class ReservationService : IReservationService
         if (teslaCar is null)
             throw new NotFoundException("Tesla model not found");
         reservation.TotalCost = CalculatePrice(teslaCar.DailyRate, dto.StartDate, dto.EndDate);
-        _dbContext.SaveChanges();
+       await _dbContext.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<ReservationDto>> GetAll()
