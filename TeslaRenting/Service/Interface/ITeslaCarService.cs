@@ -4,9 +4,9 @@ namespace TeslaRenting.Service.Interface;
 
 public interface ITeslaCarService
 { 
-        IEnumerable<TeslaCarDto> GetAll(); 
-        TeslaCarDto GetTeslaCarById(int id);
-        int Create(CreateTeslaCarDto dto);
-        void Update(int id, UpdateTeslaCarDto dto);
-        void Delete(int id);
+        Task<IEnumerable<TeslaCarDto>> GetAll(); 
+        Task<TeslaCarDto> GetTeslaCarById(int id);
+        Task<int> Create(CreateTeslaCarDto dto);
+        Task Update(int id, UpdateTeslaCarDto dto);
+        Task Delete(int id);
 }

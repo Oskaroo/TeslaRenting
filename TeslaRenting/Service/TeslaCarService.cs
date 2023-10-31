@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TeslaRenting.Data.Entity;
 using TeslaRenting.Data.Model;
 using TeslaRenting.Exception;
@@ -16,33 +17,33 @@ public class TeslaCarService : ITeslaCarService
         _dbContext = dbContext;
         _mapper = mapper;
     }
-    public IEnumerable<TeslaCarDto> GetAll()
+    public async Task<IEnumerable<TeslaCarDto>> GetAll()
     {
-        var teslaCar = _dbContext.TeslaCars.ToList();
+        var teslaCar = await _dbContext.TeslaCars.ToListAsync();
         var teslaCarsDtos = _mapper.Map<List<TeslaCarDto>>(teslaCar);
         return teslaCarsDtos;
     }
 
-    public TeslaCarDto GetTeslaCarById(int id)
+    public async Task<TeslaCarDto> GetTeslaCarById(int id)
     {
-        var teslaCar = _dbContext.TeslaCars.FirstOrDefault(t => t.Id == id);
+        var teslaCar = await _dbContext.TeslaCars.FirstOrDefaultAsync(t => t.Id == id);
         if (teslaCar is null)
             throw new NotFoundException("Tesla model not found");
         var result = _mapper.Map<TeslaCarDto>(teslaCar);
         return result;
     }
 
-    public int Create(CreateTeslaCarDto dto)
+    public async Task<int> Create(CreateTeslaCarDto dto)
     {
         var teslaCar = _mapper.Map<TeslaCar>(dto);
-        _dbContext.TeslaCars.Add(teslaCar);
-        _dbContext.SaveChanges();
+        await _dbContext.TeslaCars.AddAsync(teslaCar);
+        await _dbContext.SaveChangesAsync();
         return teslaCar.Id;
     }
 
-    public void Update(int id, UpdateTeslaCarDto dto)
+    public async Task Update(int id, UpdateTeslaCarDto dto)
     {
-        var teslaCar = _dbContext.TeslaCars.FirstOrDefault(t => t.Id == id);
+        var teslaCar = await _dbContext.TeslaCars.FirstOrDefaultAsync(t => t.Id == id);
         if (teslaCar is null)
             throw new NotFoundException("Tesla model not found");
         teslaCar.Name = dto.Name;
@@ -50,15 +51,15 @@ public class TeslaCarService : ITeslaCarService
         teslaCar.AvailableAt = dto.AvailableAt;
         teslaCar.DailyRate = dto.DailyRate;
         teslaCar.ImageUrl = dto.ImageUrl;
-        _dbContext.SaveChanges();
+       await _dbContext.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        var teslaCar = _dbContext.TeslaCars.FirstOrDefault(t => t.Id == id);
+        var teslaCar = await _dbContext.TeslaCars.FirstOrDefaultAsync(t => t.Id == id);
         if (teslaCar is null)
             throw new NotFoundException("Tesla model not found");
         _dbContext.TeslaCars.Remove(teslaCar);
-        _dbContext.SaveChanges();
+       await _dbContext.SaveChangesAsync();
     }
 }

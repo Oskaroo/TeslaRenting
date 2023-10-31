@@ -25,12 +25,12 @@ public class UserService : IUserService
         _mapper = mapper;
         _authenticationSettings = authenticationSettings;
     }
-    public UserDto GetUserById(int id)
+    public async Task<UserDto> GetUserById(int id)
     {
-        var users = _dbContext.Users
+        var users =await _dbContext.Users
             .Include(u => u.UserAddress)
             .Include(u => u.Reservations)
-            .FirstOrDefault(u => u.Id == id);
+            .FirstOrDefaultAsync(u => u.Id == id);
         
         if(users is null) 
             throw new NotFoundException("Reservation not found");
@@ -40,17 +40,17 @@ public class UserService : IUserService
         
     }
 
-    public IEnumerable<UserDto> GetAll()
+    public async Task<IEnumerable<UserDto>> GetAll()
     {
-        var users = _dbContext.Users
+        var users =await _dbContext.Users
             .Include(u => u.UserAddress)
             .Include(u => u.Reservations)
-            .ToList();
+            .ToListAsync();
         var usersDtos = _mapper.Map<List<UserDto>>(users);
         return usersDtos;
     }
 
-    public void RegisterUser(RegisterUserDto dto)
+    public async Task RegisterUser(RegisterUserDto dto)
     {
         try
         {
@@ -61,7 +61,7 @@ public class UserService : IUserService
                 Street = dto.Street,
                 PostalCode = dto.PostalCode
             };
-            _dbContext.Addresses.Add(address);
+            await _dbContext.Addresses.AddAsync(address);
             var newUser = new User()
             {
                 FirstName = dto.FirstName,
@@ -72,8 +72,8 @@ public class UserService : IUserService
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 UserAddress = address
             };
-            _dbContext.Users.Add(newUser);
-            _dbContext.SaveChanges();
+           await _dbContext.Users.AddAsync(newUser);
+            await _dbContext.SaveChangesAsync();
         }
         catch (System.Exception e)
         {
@@ -81,11 +81,11 @@ public class UserService : IUserService
         }
     }
 
-    public string GenerateJwt(LoginDto dto)
+    public async Task<string> GenerateJwt(LoginDto dto)
     {
-        var user = _dbContext.Users
+        var user = await _dbContext.Users
             .Include(u => u.UserRole)
-            .FirstOrDefault(u => u.Email == dto.Email);
+            .FirstOrDefaultAsync(u => u.Email == dto.Email);
         if (user is null) throw new BadRequestException("Invalid username or password");
         var result = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
         if (result == false)
@@ -114,21 +114,21 @@ public class UserService : IUserService
         return tokenHandler.WriteToken(token);
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        var user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user is null)
             throw new NotFoundException("User not found");
         _dbContext.Users.Remove(user);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
 
-    public void Assign(AssignRoleDto dto, int id)
+    public async Task Assign(AssignRoleDto dto, int id)
     {
-        var user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user is null)
             throw new NotFoundException("User not found");
         user.UserRoleId = dto.UserRoleId;
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
 }

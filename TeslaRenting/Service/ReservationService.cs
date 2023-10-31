@@ -21,12 +21,12 @@ public class ReservationService : IReservationService
         _logger = logger;
     }
 
-    public ReservationDto GetReservationById(int id)
+    public async Task<ReservationDto> GetReservationById(int id)
     {
-        var reservation = _dbContext.Reservations
+        var reservation = await _dbContext.Reservations
             .Include(r => r.TeslaCar)
             .Include(r => r.User)
-            .FirstOrDefault(r => r.Id == id);
+            .FirstOrDefaultAsync(r => r.Id == id);
         
         if(reservation is null) 
             throw new NotFoundException("Reservation not found");
@@ -35,10 +35,10 @@ public class ReservationService : IReservationService
         return result;
     }
 
-    public int Create(CreateReservationDto dto)
+    public async Task<int> Create(CreateReservationDto dto)
     {
         var reservation = _mapper.Map<Reservation>(dto);
-        var teslaModel = _dbContext.TeslaCars.FirstOrDefault(t => t.Id == dto.TeslaCarId);
+        var teslaModel = await _dbContext.TeslaCars.FirstOrDefaultAsync(t => t.Id == dto.TeslaCarId);
         if (teslaModel is null)
             throw new NotFoundException("Tesla model not found");
         
@@ -49,24 +49,24 @@ public class ReservationService : IReservationService
         return reservation.Id;
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
         _logger.LogError($"Restaurant with id: {id} DELETE action invoked");
-        var reservation = _dbContext
+        var reservation = await _dbContext
             .Reservations
-            .FirstOrDefault(r => r.Id == id);
+            .FirstOrDefaultAsync(r => r.Id == id);
         if (reservation is null)
             throw new NotFoundException("Reservation not found");
         _dbContext.Reservations.Remove(reservation);
         _dbContext.SaveChanges();
     }
     
-    public void Update(int id, UpdateReservationDto dto)
+    public async Task Update(int id, UpdateReservationDto dto)
     {
-        var reservation = _dbContext
+        var reservation = await _dbContext
             .Reservations
-            .FirstOrDefault(r => r.Id == id);
-        var teslaCar = _dbContext.TeslaCars.FirstOrDefault(t => t.Id == dto.TeslaCarId);
+            .FirstOrDefaultAsync(r => r.Id == id);
+        var teslaCar = await _dbContext.TeslaCars.FirstOrDefaultAsync(t => t.Id == dto.TeslaCarId);
         if (reservation is null)
             throw new NotFoundException("Reservation not found");
         reservation.TeslaCarId = dto.TeslaCarId;
@@ -78,12 +78,12 @@ public class ReservationService : IReservationService
         _dbContext.SaveChanges();
     }
 
-    public IEnumerable<ReservationDto> GetAll()
+    public async Task<IEnumerable<ReservationDto>> GetAll()
     {
-        var reservations = _dbContext.Reservations
+        var reservations = await _dbContext.Reservations
             .Include(r => r.TeslaCar)
             .Include(r => r.User)
-            .ToList();
+            .ToListAsync();
         var reservationsDtos = _mapper.Map<List<ReservationDto>>(reservations);
         return reservationsDtos;
     }
