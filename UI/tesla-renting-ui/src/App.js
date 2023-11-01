@@ -7,6 +7,10 @@ import NotFound from "./NotFound";
 import Cars from "./Cars";
 import Places from "./Places";
 import PostDetails from "./PostDetails";
+import About from "./About";
+import Contact from "./Contact";
+import Register from "./Register";
+import Login from "./Login";
 function App() {
   return (
     <Router>
@@ -31,6 +35,18 @@ function App() {
             </Route>
             <Route path="/post/:id">
               <PostDetails />
+            </Route>
+            <Route path="/About">
+              <About />
+            </Route>
+            <Route path="/Contact">
+              <Contact />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <Login />
             </Route>
             <Route path="*">
               <NotFound />

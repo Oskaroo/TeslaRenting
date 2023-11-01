@@ -26,3 +26,28 @@ export const AddReservation = (carData) => {
     return response.data;
   });
 };
+export const RegisterUser = (formData) => {
+  // Function to register a user
+  return Axios.post(`${api}/api/user/register`, formData).then((response) => {
+    if (response.status === 200) {
+      // Registration successful, you can customize the success handling here
+      console.log("Registration successful");
+    } else {
+      // Handle registration errors
+      throw new Error(`Registration failed - ${response.status}`);
+    }
+  });
+};
+export const LoginUser = (loginData) => {
+  return apiAxiosInstance
+    .post("/api/user/login", loginData)
+    .then((response) => {
+      if (response.status === 200) {
+        // Login successful, you can customize the success handling here
+        return response.data;
+      } else {
+        // Handle login errors
+        throw new Error(`Login failed - ${response.status}`);
+      }
+    });
+};

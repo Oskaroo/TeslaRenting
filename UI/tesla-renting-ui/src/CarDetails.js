@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Axios from "axios";
+import { mapAvailabilityToName } from "./AvailabilityMapping";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -40,7 +41,8 @@ const CarDetails = () => {
       {car && (
         <article>
           <h2>{car.name}</h2>
-          <p>Available at {car.availableAt}</p>
+          <p>Available at {mapAvailabilityToName(car.availableAt)}</p>{" "}
+          {/* Use the mapping function */}
           <div>{car.description}</div>
           <button onClick={handleDelete}>Delete</button>
         </article>

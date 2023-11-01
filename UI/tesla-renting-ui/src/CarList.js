@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GetAllCars } from "./Api/apiCalls";
+import { mapAvailabilityToName } from "./AvailabilityMapping";
 
 const CarList = () => {
   const [cars, setCars] = useState([]);
@@ -27,12 +28,12 @@ const CarList = () => {
         <div className="car-preview" key={car.id}>
           <Link to={`/cars/${car.id}`}>
             <h2>{car.title}</h2>
-            <p>Available in {car.place}</p>
+            <p>Available in {mapAvailabilityToName(car.place)}</p>{" "}
+            {/* Use the mapping function */}
           </Link>
         </div>
       ))}
     </div>
   );
 };
-
 export default CarList;
