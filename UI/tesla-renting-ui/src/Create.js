@@ -62,16 +62,16 @@ const Create = () => {
 
   return (
     <div className="create">
-      <h2>Dodaj rezerwację</h2>
+      <h2>Create Reservation</h2>
       <form onSubmit={handleSubmit}>
-        <label>Miejsce:</label>
+        <label>Place:</label>
         <select name="Place" value={carData.Place} onChange={handleInputChange}>
           <option value="PalmaAirport">Palma Airport</option>
           <option value="PalmaCityCenter">Palma City Center</option>
           <option value="Alcudia">Alcudia</option>
           <option value="Manacor">Manacor</option>
         </select>
-        <label>Model samochodu:</label>
+        <label>Car Model:</label>
         <select
           name="TeslaCarId"
           value={carData.TeslaCarId}
@@ -83,7 +83,7 @@ const Create = () => {
             </option>
           ))}
         </select>
-        <label>Data rozpoczęcia:</label>
+        <label>Start date:</label>
         <input
           type="date"
           name="StartDate"
@@ -91,7 +91,7 @@ const Create = () => {
           value={carData.StartDate}
           onChange={handleInputChange}
         />
-        <label>Data zakończenia:</label>
+        <label>End date:</label>
         <input
           type="date"
           name="EndDate"
@@ -99,7 +99,7 @@ const Create = () => {
           value={carData.EndDate}
           onChange={handleInputChange}
         />
-        <label>ID użytkownika:</label>
+        <label>UserID:</label>
         <input
           type="number"
           name="UserId"
