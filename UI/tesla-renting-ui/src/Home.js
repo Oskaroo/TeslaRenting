@@ -1,18 +1,28 @@
-import CarList from "./CarList";
-import useFetch from "./UseFetch";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import News from "./newsData.json";
 
 const Home = () => {
-  const {
-    isPending,
-    error,
-    data: cars,
-  } = useFetch(`http://localhost:5001/api/teslaCar`); // Updated URL
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    setData(News);
+  }, []);
 
   return (
     <div className="home">
-      {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
-      {cars && <CarList cars={cars} />}
+      {data && (
+        <div>
+          <h2>News</h2>
+          {data.map((newsItem) => (
+            <Link key={newsItem.id} to={`/post/${newsItem.id}`}>
+              <div className="news-item">
+                <h3>{newsItem.name}</h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

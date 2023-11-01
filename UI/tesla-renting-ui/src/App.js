@@ -6,6 +6,7 @@ import CarDetails from "./CarDetails";
 import NotFound from "./NotFound";
 import Cars from "./Cars";
 import Places from "./Places";
+import PostDetails from "./PostDetails";
 function App() {
   return (
     <Router>
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <Route path="/cars">
               <Cars />
+            </Route>
+            <Route path="/post/:id">
+              <PostDetails />
             </Route>
             <Route path="*">
               <NotFound />
