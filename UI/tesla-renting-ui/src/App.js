@@ -1,6 +1,7 @@
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import Home from "./Home";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from "./Create";
 import CarDetails from "./CarDetails";
 import NotFound from "./NotFound";
@@ -11,11 +12,26 @@ import About from "./About";
 import Contact from "./Contact";
 import Register from "./Register";
 import Login from "./Login";
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Początkowo użytkownik nie jest zalogowany
+
+  const handleLogin = (token) => {
+    // Funkcja do obsługi zalogowania użytkownika
+    setIsLoggedIn(true);
+    // Tutaj możesz przechować token lub inne informacje o zalogowanym użytkowniku
+  };
+
+  const handleLogout = () => {
+    // Funkcja do obsługi wylogowania użytkownika
+    setIsLoggedIn(false);
+    // Tutaj możesz wyczyścić token lub inne informacje o użytkowniku
+  };
+
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
         <div className="content">
           <Switch>
             <Route exact path="/">
@@ -46,7 +62,7 @@ function App() {
               <Register />
             </Route>
             <Route path="/login">
-              <Login />
+              <Login handleLogin={handleLogin} />
             </Route>
             <Route path="*">
               <NotFound />

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom"; // Import useHistory
 import { LoginUser } from "./Api/apiCalls";
 
-function Login() {
+function Login({ handleLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const history = useHistory(); // Inicjalizacja hooka useHistory
 
-  const handleLogin = () => {
+  const handleLoginClick = () => {
     const loginData = {
       Email: email,
       Password: password,
@@ -14,11 +16,10 @@ function Login() {
 
     LoginUser(loginData)
       .then((token) => {
-        // Login successful, you can handle the token and user authentication here
-        console.log(`Login successful. Token: ${token}`);
+        handleLogin(token); // Wywołanie funkcji handleLogin przekazanej z komponentu nadrzędnego
+        history.push("/"); // Przekierowanie użytkownika na stronę główną
       })
       .catch((error) => {
-        // Handle login errors
         setError(error.message);
       });
   };
@@ -43,7 +44,8 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLoginClick}>Login</button>{" "}
+      {/* Użyj funkcji handleLoginClick */}
     </div>
   );
 }
