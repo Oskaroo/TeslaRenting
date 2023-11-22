@@ -29,7 +29,7 @@ public class ErrorHandlingMiddleware : IMiddleware
         catch (System.Exception e)
         {
             _logger.LogError(e, e.Message);
-            
+
             context.Response.StatusCode = 500;
             await context.Response.WriteAsync(e.Message);
         }

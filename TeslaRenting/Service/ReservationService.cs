@@ -78,16 +78,15 @@ public class ReservationService : IReservationService
        await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<ReservationDto>> GetAll()
+    public async Task<IEnumerable<ReservationDto>> GetAll(CancellationToken cancellationToken)
     {
         var reservations = await _dbContext.Reservations
             .Include(r => r.TeslaCar)
             .Include(r => r.User)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
         var reservationsDtos = _mapper.Map<List<ReservationDto>>(reservations);
         return reservationsDtos;
     }
-    
     
 // Calculate the difference between two dates and multiply it by the daily rate of the car
     public decimal CalculatePrice(decimal dailyRate, DateTime startDate, DateTime endDate)

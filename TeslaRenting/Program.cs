@@ -8,7 +8,6 @@ using NLog.Web;
 using TeslaRenting.Controller.Authorization;
 using TeslaRenting.Controller.Authorization.Handler;
 using TeslaRenting.Data.Entity;
-using TeslaRenting.Data.Enum;
 using TeslaRenting.Data.Model;
 using TeslaRenting.Data.Model.Authenticator;
 using TeslaRenting.Data.Model.Validator;
@@ -17,6 +16,7 @@ using TeslaRenting.Service;
 using TeslaRenting.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Host.UseNLog();
 
 // Add services to the container.
@@ -62,7 +62,6 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITeslaCarService, TeslaCarService>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
-
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
@@ -74,7 +73,6 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
-builder.Services.AddScoped<RequestTimeMiddleware>();
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -92,7 +90,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<TeslaRentingDbContext>();
-        context.Database.EnsureCreated(); 
+        context.Database.Migrate();
     }
     catch (Exception ex)
     {
@@ -102,15 +100,10 @@ using (var scope = app.Services.CreateScope())
 
 
 
-
-
-
-
 // Configure the HTTP request pipeline.]
 
 app.UseCors();
 app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseMiddleware<RequestTimeMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseSwagger();
