@@ -1,16 +1,16 @@
-import Navbar from "./Navbar";
-import Home from "./Home";
+import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Create from "./Create";
-import CarDetails from "./CarDetails";
-import NotFound from "./NotFound";
-import Cars from "./Cars";
-import Places from "./Places";
-import PostDetails from "./PostDetails";
-import About from "./About";
-import Contact from "./Contact";
-import Register from "./Register";
-import Login from "./Login";
+import Create from "./Pages/Create";
+import CarDetails from "./Pages/CarDetails";
+import NotFound from "./Components/NotFound";
+import Cars from "./Pages/Cars";
+import Places from "./Pages/Places";
+import PostDetails from "./Pages/PostDetails";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
 function App() {
   return (
     <Router>
