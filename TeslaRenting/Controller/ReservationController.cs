@@ -18,9 +18,9 @@ public class ReservationController : ControllerBase
     }
     [HttpGet]
     [Authorize (Roles = "Admin,Employee")]
-    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll(CancellationToken cancellationToken)
     {
-        var reservationsDtos = _reservationService.GetAll();
+        var reservationsDtos = await _reservationService.GetAll(cancellationToken);
         return Ok(reservationsDtos);
     }
     

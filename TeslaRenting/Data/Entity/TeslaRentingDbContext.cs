@@ -15,7 +15,6 @@ public class TeslaRentingDbContext : DbContext
     private readonly List<User> _userSeedData;
     private readonly List<Address> _addressSeedData;
     private readonly List<Role> _roleSeedData;
-
     public TeslaRentingDbContext(DbContextOptions<TeslaRentingDbContext> options) : base(options)
     {
         //seed TeslaCar from Json
@@ -51,7 +50,6 @@ public class TeslaRentingDbContext : DbContext
         {
             _addressSeedData = new List<Address>();
         }
-        
         //seed User from Json
         var userSeedPath = Path.Combine(Directory.GetCurrentDirectory(), "userSeed.json");
         if (File.Exists(userSeedPath))
@@ -72,7 +70,6 @@ public class TeslaRentingDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
         modelBuilder.Entity<TeslaCar>()
             .Property(t => t.Name)
             .IsRequired();
@@ -81,20 +78,11 @@ public class TeslaRentingDbContext : DbContext
         modelBuilder.Entity<TeslaCar>()
             .Property(t => t.AvailableAt)
             .HasConversion<string>();
-        modelBuilder.Entity<User>()
-            .HasOne(u => u.UserAddress)
-            .WithMany(a => a.Users)
-            .HasForeignKey(u => u.UserAddressId);
-        modelBuilder.Entity<User>()
-            .HasOne(u => u.UserRole)
-            .WithMany(a => a.Users)
-            .HasForeignKey(u => u.UserRoleId);
         modelBuilder.Entity<Address>()
             .HasData(_addressSeedData);
         modelBuilder.Entity<Role>()
             .HasData(_roleSeedData);
         modelBuilder.Entity<User>()
             .HasData(_userSeedData);
-        
     }
 }
