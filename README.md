@@ -1,4 +1,5 @@
 # Project Documentation: TeslaRenting
+![logo5_retina](https://github.com/Oskaroo/TeslaRenting/assets/106118915/585edc20-2503-41c6-8b48-34aed6519bf0)
 
 ## Project Description
 This is a web application designed to handle the rental of Tesla cars in Majorca. It offers a wide range of features related to users, reservations, and cars, accessible through both a Web API interface and a website. Users can register, log in, create reservations, and browse available rental locations and car models.
