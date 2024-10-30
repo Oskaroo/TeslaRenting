@@ -14,18 +14,14 @@ import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Początkowo użytkownik nie jest zalogowany
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = (token) => {
-    // Funkcja do obsługi zalogowania użytkownika
     setIsLoggedIn(true);
-    // Tutaj możesz przechować token lub inne informacje o zalogowanym użytkowniku
   };
 
   const handleLogout = () => {
-    // Funkcja do obsługi wylogowania użytkownika
     setIsLoggedIn(false);
-    // Tutaj możesz wyczyścić token lub inne informacje o użytkowniku
   };
 
   return (

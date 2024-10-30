@@ -9,11 +9,10 @@ const CarList = () => {
   useEffect(() => {
     GetAllCars()
       .then((data) => {
-        // Map the data from the API to match the expected structure
         const mappedCars = data.map((car) => ({
           id: car.id,
-          title: car.name, // Map "name" to "title"
-          place: car.availableAt, // Map "availableAt" to "place"
+          title: car.name,
+          place: car.availableAt,
         }));
         setCars(mappedCars);
       })
@@ -29,7 +28,6 @@ const CarList = () => {
           <Link to={`/cars/${car.id}`}>
             <h2>{car.title}</h2>
             <p>Available in {mapAvailabilityToName(car.place)}</p>{" "}
-            {/* Use the mapping function */}
           </Link>
         </div>
       ))}

@@ -89,7 +89,7 @@ public class ReservationService : IReservationService
     }
     
 // Calculate the difference between two dates and multiply it by the daily rate of the car
-    public decimal CalculatePrice(decimal dailyRate, DateTime startDate, DateTime endDate)
+    public decimal CalculatePrice(decimal dailyRate, DateTimeOffset startDate, DateTimeOffset endDate)
     {
         var days = (endDate - startDate).Days;
         var result = dailyRate * days;
