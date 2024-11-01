@@ -1,53 +1,86 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom"; // Import useHistory
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { LoginUser } from "../Api/apiCalls";
+import { useForm } from "react-hook-form";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  Button,
+  DialogActions,
+} from "@mui/material";
 
-function Login({ handleLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const history = useHistory(); // Inicjalizacja hooka useHistory
+function LoginModal({ open, setOpen, handleLogin }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const history = useHistory();
 
-  const handleLoginClick = () => {
-    const loginData = {
-      Email: email,
-      Password: password,
-    };
+  const onFormSubmit = async (data) => {
+    try {
+      await LoginUser(data);
+      handleLogin();
+      history.push("/");
+      setOpen(false);
+    } catch (error) {
+      console.error("Logowanie nieudane:", error.message);
+    }
+  };
 
-    LoginUser(loginData)
-      .then((token) => {
-        handleLogin(token); // Wywołanie funkcji handleLogin przekazanej z komponentu nadrzędnego
-        history.push("/"); // Przekierowanie użytkownika na stronę główną
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button onClick={handleLoginClick}>Login</button>{" "}
-      {/* Użyj funkcji handleLoginClick */}
-    </div>
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>Logowanie</DialogTitle>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
+        <DialogContent>
+          <TextField
+            margin="dense"
+            label="Email"
+            type="email"
+            fullWidth
+            variant="outlined"
+            {...register("Email", {
+              required: "Email jest wymagany",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Nieprawidłowy adres email",
+              },
+            })}
+            error={!!errors.Email}
+            helperText={errors.Email?.message}
+          />
+          <TextField
+            margin="dense"
+            label="Hasło"
+            type="password"
+            fullWidth
+            variant="outlined"
+            {...register("Password", {
+              required: "Hasło jest wymagane",
+              minLength: {
+                value: 5,
+                message: "Hasło musi mieć co najmniej 5 znaków",
+              },
+            })}
+            error={!!errors.Password}
+            helperText={errors.Password?.message}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Anuluj</Button>
+          <Button type="submit" color="primary">
+            Zaloguj
+          </Button>
+        </DialogActions>
+      </form>
+    </Dialog>
   );
 }
 
-export default Login;
+export default LoginModal;

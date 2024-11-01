@@ -11,22 +11,23 @@
   <component name="ChangeListManager">
     <list default="true" id="73732d30-da98-47da-a72a-3fac25f78738" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Entity/Reservation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Entity/Reservation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Entity/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Entity/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Model/CreateReservationDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Model/CreateReservationDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Model/RegisterUserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Model/RegisterUserDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Model/ReservationDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Model/ReservationDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Model/UpdateReservationDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Model/UpdateReservationDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Model/UserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Model/UserDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Migrations/20231107135406_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Migrations/20231107135406_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Migrations/20231109204602_Init.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Migrations/20231109204602_Init.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Migrations/TeslaRentingDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Service/ReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Service/ReservationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/TeslaRenting.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/TeslaRenting.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeslaRenting/teslaCarSeed.json" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/teslaCarSeed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/CarList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/Navbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/NewsList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/NotFound.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/CarDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/CarDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Cars.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Cars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Places.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Places.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +63,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;oldProjectRebuild&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -157,6 +158,9 @@
       <workItem from="1700595024150" duration="1354000" />
       <workItem from="1730304082117" duration="314000" />
       <workItem from="1730304409321" duration="1241000" />
+      <workItem from="1730309964527" duration="3738000" />
+      <workItem from="1730364663577" duration="187000" />
+      <workItem from="1730492306355" duration="2778000" />
     </task>
     <servers />
   </component>

@@ -1,3 +1,4 @@
+import { Grid2, Typography } from "@mui/material";
 import CarList from "../Components/CarList";
 import useFetch from "../Utils/UseFetch";
 
@@ -6,14 +7,14 @@ const Cars = () => {
     isPending,
     error,
     data: cars,
-  } = useFetch(`http://localhost:5001/api/teslaCar`); // Updated URL
+  } = useFetch(`http://localhost:5001/api/teslaCar`);
 
   return (
-    <div className="home">
-      {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
+    <Grid2 className="home">
+      {error && <Typography>{error}</Typography>}
+      {isPending && <Typography>Loading...</Typography>}
       {cars && <CarList cars={cars} />}
-    </div>
+    </Grid2>
   );
 };
 

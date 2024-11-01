@@ -2,112 +2,112 @@
   {
     "Id": 1,
     "Name": "Model 3",
-    "Description": "Five-door compact sedan (segment C) equipped with a fully electric drive (can travel approximately 350 km on a single charge), produced since 2017. The model year is 2017, with a 320HP 222kW P60 engine.",
+    "Description": "Pięciodrzwiowy kompaktowy sedan (segment C) wyposażony w napęd w pełni elektryczny (może przejechać około 350 km na jednym ładowaniu), produkowany od 2017 roku. Rok modelowy 2017, z silnikiem 320HP 222kW P60.",
     "DailyRate": 100.00,
     "AvailableAt": 0
   },
   {
     "Id": 2,
     "Name": "Model S",
-    "Description": "Luxury model in the E segment, powered by an electric motor with 1020HP, 750kW of power, capable of traveling approximately 637km on a single charge. Model year 2021. It has 5 doors.",
+    "Description": "Luksusowy model w segmencie E, napędzany silnikiem elektrycznym o mocy 1020HP, 750kW, zdolny do przejechania około 637 km na jednym ładowaniu. Rok modelowy 2021. Posiada 5 drzwi.",
     "DailyRate": 1200.00,
     "AvailableAt": 0
   },
   {
     "Id": 3,
     "Name": "Model X",
-    "Description": "Built on the Model S platform, the Model X was designed to combine the best features of an SUV and a minivan while maintaining sporty performance. The main feature of the Model X is the upward-lifting rear pair of doors - Falcon Wing Doors. The car is from the 2017 model year, with a 503HP 370kW P100D engine.",
+    "Description": "Zbudowany na platformie Modelu S, Model X został zaprojektowany, aby łączyć najlepsze cechy SUV-a i minivana, jednocześnie zachowując sportową wydajność. Główną cechą Modelu X są podnoszone do góry tylne drzwi - Falcon Wing Doors. Samochód z roku modelowego 2017, z silnikiem 503HP 370kW P100D.",
     "DailyRate": 240.00,
     "AvailableAt": 0
   },
   {
     "Id":4,
     "Name": "Model Y",
-    "Description": "It features a range of up to 507 kilometers on a single charge and all-wheel drive (AWD) with a dual-motor setup. The vehicle accelerates from 0 to 100 km/h in 5 seconds, and its maximum speed is 217 km/h. It's a comfortable 5-door car with a 450HP engine.",
+    "Description": "Charakteryzuje się zasięgiem do 507 kilometrów na jednym ładowaniu i napędem na wszystkie koła (AWD) z układem dwusilnikowym. Pojazd przyspiesza od 0 do 100 km/h w 5 sekund, a jego maksymalna prędkość to 217 km/h. Jest to komfortowy samochód pięciodrzwiowy z silnikiem 450HP.",
     "DailyRate": 190.00,
     "AvailableAt": 0
   },
   {
     "Id": 5,
     "Name": "Model 3",
-    "Description": "Five-door compact sedan (segment C) equipped with a fully electric drive (can travel approximately 350 km on a single charge), produced since 2017. The model year is 2017, with a 320HP 222kW P60 engine.",
+    "Description": "Pięciodrzwiowy kompaktowy sedan (segment C) wyposażony w napęd w pełni elektryczny (może przejechać około 350 km na jednym ładowaniu), produkowany od 2017 roku. Rok modelowy 2017, z silnikiem 320HP 222kW P60.",
     "DailyRate": 100.00,
     "AvailableAt": 1
   },
   {
     "Id": 6,
     "Name": "Model S",
-    "Description": "Luxury model in the E segment, powered by an electric motor with 1020HP, 750kW of power, capable of traveling approximately 637km on a single charge. Model year 2021. It has 5 doors.",
+    "Description": "Luksusowy model w segmencie E, napędzany silnikiem elektrycznym o mocy 1020HP, 750kW, zdolny do przejechania około 637 km na jednym ładowaniu. Rok modelowy 2021. Posiada 5 drzwi.",
     "DailyRate": 1200.00,
     "AvailableAt": 1
   },
   {
     "Id":7,
     "Name": "Model X",
-    "Description": "Built on the Model S platform, the Model X was designed to combine the best features of an SUV and a minivan while maintaining sporty performance. The main feature of the Model X is the upward-lifting rear pair of doors - Falcon Wing Doors. The car is from the 2017 model year, with a 503HP 370kW P100D engine.",
+    "Description": "Zbudowany na platformie Modelu S, Model X został zaprojektowany, aby łączyć najlepsze cechy SUV-a i minivana, jednocześnie zachowując sportową wydajność. Główną cechą Modelu X są podnoszone do góry tylne drzwi - Falcon Wing Doors. Samochód z roku modelowego 2017, z silnikiem 503HP 370kW P100D.",
     "DailyRate": 240.00,
     "AvailableAt": 1
   },
   {
     "Id":8,
     "Name": "Model Y",
-    "Description": "It features a range of up to 507 kilometers on a single charge and all-wheel drive (AWD) with a dual-motor setup. The vehicle accelerates from 0 to 100 km/h in 5 seconds, and its maximum speed is 217 km/h. It's a comfortable 5-door car with a 450HP engine.",
+    "Description": "Charakteryzuje się zasięgiem do 507 kilometrów na jednym ładowaniu i napędem na wszystkie koła (AWD) z układem dwusilnikowym. Pojazd przyspiesza od 0 do 100 km/h w 5 sekund, a jego maksymalna prędkość to 217 km/h. Jest to komfortowy samochód pięciodrzwiowy z silnikiem 450HP.",
     "DailyRate": 190.00,
     "AvailableAt": 1
   },
   {
     "Id": 9,
     "Name": "Model 3",
-    "Description": "Five-door compact sedan (segment C) equipped with a fully electric drive (can travel approximately 350 km on a single charge), produced since 2017. The model year is 2017, with a 320HP 222kW P60 engine.",
+    "Description": "Pięciodrzwiowy kompaktowy sedan (segment C) wyposażony w napęd w pełni elektryczny (może przejechać około 350 km na jednym ładowaniu), produkowany od 2017 roku. Rok modelowy 2017, z silnikiem 320HP 222kW P60.",
     "DailyRate": 100.00,
     "AvailableAt": 2
   },
   {
     "Id": 10,
     "Name": "Model S",
-    "Description": "Luxury model in the E segment, powered by an electric motor with 1020HP, 750kW of power, capable of traveling approximately 637km on a single charge. Model year 2021. It has 5 doors.",
+    "Description": "Luksusowy model w segmencie E, napędzany silnikiem elektrycznym o mocy 1020HP, 750kW, zdolny do przejechania około 637 km na jednym ładowaniu. Rok modelowy 2021. Posiada 5 drzwi.",
     "DailyRate": 1200.00,
     "AvailableAt": 2
   },
   {
     "Id": 11,
     "Name": "Model X",
-    "Description": "Built on the Model S platform, the Model X was designed to combine the best features of an SUV and a minivan while maintaining sporty performance. The main feature of the Model X is the upward-lifting rear pair of doors - Falcon Wing Doors. The car is from the 2017 model year, with a 503HP 370kW P100D engine.",
+    "Description": "Zbudowany na platformie Modelu S, Model X został zaprojektowany, aby łączyć najlepsze cechy SUV-a i minivana, jednocześnie zachowując sportową wydajność. Główną cechą Modelu X są podnoszone do góry tylne drzwi - Falcon Wing Doors. Samochód z roku modelowego 2017, z silnikiem 503HP 370kW P100D.",
     "DailyRate": 240.00,
     "AvailableAt": 2
   },
   {
     "Id": 12,
     "Name": "Model Y",
-    "Description": "It features a range of up to 507 kilometers on a single charge and all-wheel drive (AWD) with a dual-motor setup. The vehicle accelerates from 0 to 100 km/h in 5 seconds, and its maximum speed is 217 km/h. It's a comfortable 5-door car with a 450HP engine.",
+    "Description": "Charakteryzuje się zasięgiem do 507 kilometrów na jednym ładowaniu i napędem na wszystkie koła (AWD) z układem dwusilnikowym. Pojazd przyspiesza od 0 do 100 km/h w 5 sekund, a jego maksymalna prędkość to 217 km/h. Jest to komfortowy samochód pięciodrzwiowy z silnikiem 450HP.",
     "DailyRate": 190.00,
     "AvailableAt": 2
   },
   {
     "Id": 13,
     "Name": "Model 3",
-    "Description": "Five-door compact sedan (segment C) equipped with a fully electric drive (can travel approximately 350 km on a single charge), produced since 2017. The model year is 2017, with a 320HP 222kW P60 engine.",
+    "Description": "Pięciodrzwiowy kompaktowy sedan (segment C) wyposażony w napęd w pełni elektryczny (może przejechać około 350 km na jednym ładowaniu), produkowany od 2017 roku. Rok modelowy 2017, z silnikiem 320HP 222kW P60.",
     "DailyRate": 100.00,
     "AvailableAt": 3
   },
   {
     "Id": 14,
     "Name": "Model S",
-    "Description": "Luxury model in the E segment, powered by an electric motor with 1020HP, 750kW of power, capable of traveling approximately 637km on a single charge. Model year 2021. It has 5 doors.",
+    "Description": "Luksusowy model w segmencie E, napędzany silnikiem elektrycznym o mocy 1020HP, 750kW, zdolny do przejechania około 637 km na jednym ładowaniu. Rok modelowy 2021. Posiada 5 drzwi.",
     "DailyRate": 1200.00,
     "AvailableAt": 3
   },
   {
     "Id": 15,
     "Name": "Model X",
-    "Description": "Built on the Model S platform, the Model X was designed to combine the best features of an SUV and a minivan while maintaining sporty performance. The main feature of the Model X is the upward-lifting rear pair of doors - Falcon Wing Doors. The car is from the 2017 model year, with a 503HP 370kW P100D engine.",
+    "Description": "Zbudowany na platformie Modelu S, Model X został zaprojektowany, aby łączyć najlepsze cechy SUV-a i minivana, jednocześnie zachowując sportową wydajność. Główną cechą Modelu X są podnoszone do góry tylne drzwi - Falcon Wing Doors. Samochód z roku modelowego 2017, z silnikiem 503HP 370kW P100D.",
     "DailyRate": 240.00,
     "AvailableAt": 3
   },
   {
     "Id": 16,
     "Name": "Model Y",
-    "Description": "It features a range of up to 507 kilometers on a single charge and all-wheel drive (AWD) with a dual-motor setup. The vehicle accelerates from 0 to 100 km/h in 5 seconds, and its maximum speed is 217 km/h. It's a comfortable 5-door car with a 450HP engine.",
+    "Description": "Charakteryzuje się zasięgiem do 507 kilometrów na jednym ładowaniu i napędem na wszystkie koła (AWD) z układem dwusilnikowym. Pojazd przyspiesza od 0 do 100 km/h w 5 sekund, a jego maksymalna prędkość to 217 km/h. Jest to komfortowy samochód pięciodrzwiowy z silnikiem 450HP.",
     "DailyRate": 190.00,
     "AvailableAt": 3
   }
