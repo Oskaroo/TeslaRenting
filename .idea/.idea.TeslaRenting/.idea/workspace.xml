@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73732d30-da98-47da-a72a-3fac25f78738" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/CreateReservationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/CreateReservationModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +144,7 @@
       <workItem from="1730309964527" duration="3738000" />
       <workItem from="1730364663577" duration="187000" />
       <workItem from="1730492306355" duration="2778000" />
-      <workItem from="1730542556570" duration="862000" />
+      <workItem from="1730542556570" duration="2510000" />
     </task>
     <servers />
   </component>
