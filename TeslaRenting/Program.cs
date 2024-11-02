@@ -51,8 +51,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Atleast18", b => b.AddRequirements(new MinimumAgeRequirement(18)));
 });
 
-
-builder.Services.AddDbContext<TeslaRentingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TeslaRentingDatabase")));
+builder.Services.AddDbContext<TeslaRentingDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("TeslaRentingDatabase")));
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

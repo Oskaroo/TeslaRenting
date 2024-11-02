@@ -10,18 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73732d30-da98-47da-a72a-3fac25f78738" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Controller/ReservationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Controller/ReservationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Data/Entity/TeslaRentingDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Data/Entity/TeslaRentingDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Middleware/ErrorHandlingMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Middleware/ErrorHandlingMiddleware.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Middleware/RequetTimeMiddleware.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Service/Interface/IReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Service/Interface/IReservationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/Service/ReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/Service/ReservationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -31,20 +28,25 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9536d547332d48b4a1fa6d344d253c3dc8a0/86/a2b72470/ConfigurationExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2XXEWU3dJIe9a8NiqcgUNQfFK6q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.TeslaRenting: http.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;AfterDeadline&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;oldProjectRebuild&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -54,8 +56,8 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Oskar\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Oskar\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Oskar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Oskar\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
       &quot;C:\\Users\\Oskar\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
@@ -137,12 +139,19 @@
       <workItem from="1700390713198" duration="631000" />
       <workItem from="1700565069776" duration="305000" />
       <workItem from="1700595024150" duration="1354000" />
+      <workItem from="1730304082117" duration="314000" />
+      <workItem from="1730304409321" duration="1241000" />
+      <workItem from="1730309964527" duration="3738000" />
+      <workItem from="1730364663577" duration="187000" />
+      <workItem from="1730492306355" duration="2778000" />
+      <workItem from="1730542556570" duration="2510000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>

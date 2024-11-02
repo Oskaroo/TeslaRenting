@@ -1,36 +1,90 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import News from "../newsData.json"; // Import the JSON data
+import News from "../newsData.json";
+import {
+  Container,
+  Typography,
+  CircularProgress,
+  Box,
+  Card,
+  CardContent,
+} from "@mui/material";
 
 const PostDetails = () => {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (News) {
-      setData(News);
-    }
-  }, []);
+    const fetchNews = () => {
+      const newsItem = News.find((item) => item.id.toString() === id);
+      setSelectedNews(newsItem);
+      setLoading(false);
+    };
 
-  // Check if data is still null, and if so, display a loading message
-  if (data === null) {
-    return <div>Loading...</div>;
+    fetchNews();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <Container maxWidth="sm">
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="80vh"
+        >
+          <CircularProgress />
+        </Box>
+      </Container>
+    );
   }
 
-  // Find the selected news item based on the ID
-  const selectedNews = data.find((dataItem) => dataItem.id.toString() === id);
-
   if (!selectedNews) {
-    return <div>Post not found.</div>;
+    return (
+      <Container maxWidth="sm">
+        <Typography
+          variant="h5"
+          gutterBottom
+          textAlign="center"
+          style={{ marginTop: "20px" }}
+        >
+          Post nie został znaleziony.
+        </Typography>
+      </Container>
+    );
   }
 
   return (
-    <div className="car-details">
-      <article>
-        <h2>{selectedNews.name}</h2>
-        <div>{selectedNews.content}</div>
-      </article>
-    </div>
+    <Container maxWidth="md">
+      <Card
+        raised
+        sx={{
+          backgroundImage: `url(${
+            selectedNews.imageUrl || "default_background.jpg"
+          })`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          color: "#fff",
+          mt: 2,
+          mb: 4,
+        }}
+      >
+        <CardContent>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.7)" }}
+          >
+            {selectedNews.name}
+          </Typography>
+          <Typography variant="body1" component="div">
+            {selectedNews.content}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 
