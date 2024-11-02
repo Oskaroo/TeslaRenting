@@ -10,24 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73732d30-da98-47da-a72a-3fac25f78738" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TeslaRenting/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeslaRenting/teslaCarSeed.json" beforeDir="false" afterPath="$PROJECT_DIR$/TeslaRenting/teslaCarSeed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/CarList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/Navbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/NewsList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/NotFound.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/About.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/CarDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/CarDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Cars.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Cars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Places.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Places.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Pages/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/CreateReservationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/UI/tesla-renting-ui/src/Components/CreateReservationModal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +144,7 @@
       <workItem from="1730309964527" duration="3738000" />
       <workItem from="1730364663577" duration="187000" />
       <workItem from="1730492306355" duration="2778000" />
+      <workItem from="1730542556570" duration="862000" />
     </task>
     <servers />
   </component>

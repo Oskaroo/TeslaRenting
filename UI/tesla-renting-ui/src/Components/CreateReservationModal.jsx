@@ -51,7 +51,7 @@ const CreateReservationModal = ({ open, handleClose }) => {
 
   const onSubmit = async (data) => {
     try {
-      await AddReservation(data);
+      //await AddReservation(data);
       console.log("Rezerwacja dodana pomyślnie");
       handleClose();
     } catch (error) {
@@ -72,8 +72,11 @@ const CreateReservationModal = ({ open, handleClose }) => {
             <InputLabel id="place-label">Miejsce</InputLabel>
             <Select
               labelId="place-label"
-              {...register("Place")}
+              {...register("Place", {
+                required: "Pole 'Miejsce' jest wymagane",
+              })}
               label="Miejsce"
+              error={!!errors.Place}
             >
               {Object.entries(Availability).map(([key, value]) => (
                 <MenuItem key={key} value={key}>
@@ -81,13 +84,19 @@ const CreateReservationModal = ({ open, handleClose }) => {
                 </MenuItem>
               ))}
             </Select>
+            {errors.Place && (
+              <p style={{ color: "red" }}>{errors.Place.message}</p>
+            )}
           </FormControl>
           <FormControl fullWidth margin="normal">
             <InputLabel id="car-model-label">Model samochodu</InputLabel>
             <Select
               labelId="car-model-label"
-              {...register("TeslaCarId")}
+              {...register("TeslaCarId", {
+                required: "Pole 'Model samochodu' jest wymagane",
+              })}
               label="Model samochodu"
+              error={!!errors.TeslaCarId}
             >
               {filteredCars.map((car) => (
                 <MenuItem key={car.id} value={car.id}>
@@ -95,6 +104,9 @@ const CreateReservationModal = ({ open, handleClose }) => {
                 </MenuItem>
               ))}
             </Select>
+            {errors.TeslaCarId && (
+              <p style={{ color: "red" }}>{errors.TeslaCarId.message}</p>
+            )}
           </FormControl>
           <TextField
             margin="normal"
@@ -103,6 +115,10 @@ const CreateReservationModal = ({ open, handleClose }) => {
             fullWidth
             {...register("StartDate", { required: true })}
             InputLabelProps={{ shrink: true }}
+            error={!!errors.StartDate}
+            helperText={
+              errors.StartDate && "Pole 'Data rozpoczęcia' jest wymagane"
+            }
           />
           <TextField
             margin="normal"
@@ -111,6 +127,10 @@ const CreateReservationModal = ({ open, handleClose }) => {
             fullWidth
             {...register("EndDate", { required: true })}
             InputLabelProps={{ shrink: true }}
+            error={!!errors.EndDate}
+            helperText={
+              errors.EndDate && "Pole 'Data zakończenia' jest wymagane"
+            }
           />
         </DialogContent>
         <DialogActions>

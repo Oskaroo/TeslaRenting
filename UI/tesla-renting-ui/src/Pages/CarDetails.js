@@ -44,7 +44,7 @@ const CarDetails = () => {
         <Card raised>
           <CardMedia
             component="img"
-            height="140"
+            height="260"
             image={getCarImageUrl(car.name)}
             alt={car.name}
           />
