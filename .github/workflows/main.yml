@@ -38,6 +38,10 @@ jobs:
         env:
           CI: false
 
+      - name: 🧪 Verify Frontend Build Output
+        working-directory: ./UI/tesla-renting-ui
+        run: ls -la build
+
       - name: ✅ Run ESLint
         working-directory: ./UI/tesla-renting-ui
         run: npm run lint
