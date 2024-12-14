@@ -29,8 +29,8 @@ jobs:
       - name: 📦 Install Frontend Dependencies
         working-directory: ./UI/tesla-renting-ui
         run: |
-          rm -rf node_modules package-lock.json
-          npm ci
+          rm -rf node_modules
+          npm install
 
       - name: 🚀 Build Frontend Application
         working-directory: ./UI/tesla-renting-ui
