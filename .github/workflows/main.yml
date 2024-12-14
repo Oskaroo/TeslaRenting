@@ -64,21 +64,20 @@ jobs:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 🔍 Frontend Snyk Scan
-        uses: snyk/actions/node@v1
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
-        continue-on-error: true
+      - name: 🔍 Install Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install wget -y
+          wget -qO- https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb buster main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy -y
 
-      - name: 🔍 Backend Snyk Scan
-        uses: snyk/actions/dotnet@v1
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
-        continue-on-error: true
+      - name: 🔍 Run Trivy Scan (Frontend)
+        run: trivy fs ./UI/tesla-renting-ui
+
+      - name: 🔍 Run Trivy Scan (Backend)
+        run: trivy fs ./TeslaRenting
 
   docker-deploy:
     runs-on: ubuntu-latest
