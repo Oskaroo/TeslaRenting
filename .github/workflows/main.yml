@@ -49,11 +49,11 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: 📦 Install Backend Dependencies
-        working-directory: ./TeslaRenting/TeslaRenting
+        working-directory: ./TeslaRenting
         run: dotnet restore
 
       - name: 🚀 Build Backend Application
-        working-directory: ./TeslaRenting/TeslaRenting
+        working-directory: ./TeslaRenting
         run: dotnet build --configuration Release
 
   security-check:
@@ -100,7 +100,7 @@ jobs:
 
       - name: 📦 Build and Push Backend Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/tesla-renting-backend:latest -f TeslaRenting/TeslaRenting/DockerfilePipeline .
+          docker build -t ghcr.io/${{ github.repository_owner }}/tesla-renting-backend:latest -f TeslaRenting/DockerfilePipeline .
           docker push ghcr.io/${{ github.repository_owner }}/tesla-renting-backend:latest
 
       - name: 📦 Build and Push Frontend Docker Image
