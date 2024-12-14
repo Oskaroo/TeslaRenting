@@ -60,7 +60,7 @@ jobs:
         working-directory: ./TeslaRenting
         run: dotnet build --configuration Release
 
-      - name: 🚨 Puszczenie testów
+      - name: 🚨 Running Tests
         run: echo "Running tests"
 
   security-check:
