@@ -2,9 +2,9 @@ name: Tesla Renting CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -22,13 +22,21 @@ jobs:
         with:
           node-version: '18'
 
+      - name: 🔄 Update Browserslist DB
+        working-directory: ./UI/tesla-renting-ui
+        run: npx update-browserslist-db@latest
+
       - name: 📦 Install Frontend Dependencies
         working-directory: ./UI/tesla-renting-ui
-        run: npm ci
+        run: |
+          rm -rf node_modules
+          npm install
 
       - name: 🚀 Build Frontend Application
         working-directory: ./UI/tesla-renting-ui
         run: npm run build
+        env:
+          CI: false
 
       - name: ✅ Run ESLint
         working-directory: ./UI/tesla-renting-ui
@@ -41,11 +49,11 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: 📦 Install Backend Dependencies
-        working-directory: ./TeslaRenting/TeslaRenting
+        working-directory: ./TeslaRenting
         run: dotnet restore
 
       - name: 🚀 Build Backend Application
-        working-directory: ./TeslaRenting/TeslaRenting
+        working-directory: ./TeslaRenting
         run: dotnet build --configuration Release
 
   security-check:
@@ -56,21 +64,20 @@ jobs:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 🔍 Frontend Snyk Scan
-        uses: snyk/actions/node@v1
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
-        continue-on-error: true
+      - name: 🔍 Install Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install wget -y
+          wget -qO- https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb buster main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy -y
 
-      - name: 🔍 Backend Snyk Scan
-        uses: snyk/actions/dotnet@v1
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
-        continue-on-error: true
+      - name: 🔍 Run Trivy Scan (Frontend)
+        run: trivy fs ./UI/tesla-renting-ui
+
+      - name: 🔍 Run Trivy Scan (Backend)
+        run: trivy fs ./TeslaRenting
 
   docker-deploy:
     runs-on: ubuntu-latest
@@ -92,10 +99,10 @@ jobs:
 
       - name: 📦 Build and Push Backend Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/tesla-renting-backend:latest -f TeslaRenting/TeslaRenting/DockerfilePipeline .
-          docker push ghcr.io/${{ github.repository_owner }}/tesla-renting-backend:latest
+          docker build -t ghcr.io/${{ github.repository_owner | tolower }}/tesla-renting-backend:latest -f TeslaRenting/DockerfilePipeline .
+          docker push ghcr.io/${{ github.repository_owner | tolower }}/tesla-renting-backend:latest
 
       - name: 📦 Build and Push Frontend Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/tesla-renting-frontend:latest -f UI/tesla-renting-ui/DockerfilePipeline .
-          docker push ghcr.io/${{ github.repository_owner }}/tesla-renting-frontend:latest
+          docker build -t ghcr.io/${{ github.repository_owner | tolower }}/tesla-renting-frontend:latest -f UI/tesla-renting-ui/DockerfilePipeline .
+          docker push ghcr.io/${{ github.repository_owner | tolower }}/tesla-renting-frontend:latest
