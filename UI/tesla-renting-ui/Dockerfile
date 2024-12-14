@@ -2,21 +2,22 @@
 FROM node:16 AS builder
 WORKDIR /app
 
-# Copy package.json and package-lock.json for dependency installation
-COPY UI/tesla-renting-ui/package*.json ./
+# Copy the package.json and package-lock.json for dependency installation
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the frontend code and build it
-COPY UI/tesla-renting-ui ./
+# Copy the entire frontend code and build it
+COPY . .
 RUN npm run build
 
 # Step 2: Serve the frontend with NGINX
 FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# Expose port 80 for frontend service
+# Copy NGINX configuration (if custom config is needed, specify here)
+# Ensure nginx.conf listens on port 80 inside the container
 EXPOSE 80
 
 # Start NGINX
