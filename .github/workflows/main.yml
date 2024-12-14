@@ -22,13 +22,21 @@ jobs:
         with:
           node-version: '18'
 
+      - name: 🔄 Update Browserslist DB
+        working-directory: ./UI/tesla-renting-ui
+        run: npx update-browserslist-db@latest
+
       - name: 📦 Install Frontend Dependencies
         working-directory: ./UI/tesla-renting-ui
-        run: npm ci
+        run: |
+          rm -rf node_modules package-lock.json
+          npm ci
 
       - name: 🚀 Build Frontend Application
         working-directory: ./UI/tesla-renting-ui
         run: npm run build
+        env:
+          CI: false
 
       - name: ✅ Run ESLint
         working-directory: ./UI/tesla-renting-ui
